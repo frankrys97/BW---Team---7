@@ -192,26 +192,9 @@
                   </div>
                 </div>
               </div>
-              <div class="container">
-                <section class="row bg-black bg-gradient mt-1">
-                  <div class="col-3">
-                    <div>
-                      <img
-                        src="./assets/imgs/main/image-1.jpg"
-                        alt=""
-                        class="img-fluid"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <h5></h5>
-                  </div>
-                  <div class="col-3"></div>
-                </section>
-              </div>
             </section>
             <div class="container">
-              <section class="row bg-black bg-gradient mt-1">
+              <section class="row bg-black bg-gradient mt-3 py-4" id="annuncio">
                 <div class="col-3">
                   <div>
                     <img
@@ -222,9 +205,35 @@
                   </div>
                 </div>
                 <div class="col-6">
-                  <h5></h5>
+                  <small>ALBUM</small>
+
+                  <h2>VIOLA (feat. Salmo)</h2>
+                  <p>Fedez, Salmo</p>
+                  <p>Ascolta il nuovo singolo di Fedez e Salmo!</p>
+                  <div class="d-flex gap-2">
+                    <button
+                      class="btn playButton rounded rounded-pill px-4 text-black fw-semibold"
+                    >
+                      Play
+                    </button>
+                    <button
+                      class="btn saveButton rounded rounded-pill px-4 btn-outline-light"
+                    >
+                      Salva
+                    </button>
+                    <button class="btn threeDotsButton rounded rounded-pill">
+                      <i class="bi bi-three-dots"></i>
+                    </button>
+                  </div>
                 </div>
-                <div class="col-3"></div>
+                <div class="col-3 d-flex justify-content-end align-items-start" id="hiddenButtonContainer">
+                  <button
+                    class="btn text-white-50 rounded rounded-pill py-1 hiddenButton fw-semibold"
+                    href="#annuncio"
+                  >
+                    NASCONDI ANNUNCI
+                  </button>
+                </div>
               </section>
             </div>
           </div>
