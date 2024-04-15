@@ -1,5 +1,5 @@
 body {
-    height: 100vh;
+  height: 100vh;
 }
 
 #home {
@@ -13,30 +13,30 @@ body {
   a:hover {
     color: white;
   }
-  height: 90vh;
+  height: 100vh;
 }
 
 #centerBar {
   width: 100%;
-  height: 90vh;
-
-
+  height: 100vh;
 }
 
 #rightBar {
   min-width: 275px;
-    background-color: aqua;
-    height: 90vh;
-
+  background-color: aqua;
+  height: 100vh;
 }
 
-ul, li, a {
-    color: inherit;
+ul,
+li,
+a {
+  color: inherit;
 }
 
 #dragHandle {
-  width: 2px;
+  width: 10px;
   background-color: black;
+  height: 100vh;
 }
 
 #dragHandle:hover {
@@ -44,22 +44,21 @@ ul, li, a {
   background-color: white;
 }
 
-
 .active-sidebar {
-    color: white;
+  color: white;
 }
 
 .rounded-circle-custom {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 .friends {
-    h3 {
-        font-size: 15px;
-        margin: 0;
-    }
-    p {
-        font-size: 10px;
-        margin: 0;
-    }
+  h3 {
+    font-size: 15px;
+    margin: 0;
+  }
+  p {
+    font-size: 10px;
+    margin: 0;
+  }
 }
