@@ -82,4 +82,7 @@ footer {
     margin-bottom: 0;
     font-size: 0.75em;
   }
+  i {
+    font-size: 1.5em;
+  }
 }
