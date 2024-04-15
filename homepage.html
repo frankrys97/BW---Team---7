@@ -139,40 +139,97 @@
           <hr />
           <div data-bs-spy="scroll"></div>
         </div>
+        <div id="dragHandle"></div>
         <div id="centerBar" class="bg-secondary-subtle" data-bs-spy="scroll">
           <div class="container">
             <section class="row mt-3">
               <div
                 class="col-12 d-flex justify-content-between align-items-center"
               >
-                <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-3">
                   <button
-                    class="btn bg-black p-1 ratio ratio-1x1 "
+                    class="btn bg-black p-0 rounded-circle"
+                    style="width: 30px; height: 30px"
                   >
-                    <i class="bi bi-chevron-left rounded-circle"></i>
+                    <i class="bi bi-chevron-left"></i>
                   </button>
                   <button
-                    class="btn bg-black p-1  ratio ratio-1x1 "
+                    class="btn bg-black p-0 rounded-circle"
+                    style="width: 30px; height: 30px"
                   >
-                    <i class="bi bi-chevron-right rounded-circle"></i>
+                    <i class="bi bi-chevron-right"></i>
                   </button>
                 </div>
 
-                <div></div>
-              </div>
-            </section>
+                <div class="d-flex align-items-center gap-3">
+                  <div class="dropdown">
+                    <div
+                      class="btn bg-black dropdown-toggle d-flex align-items-center gap-3 rounded-pill"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <div class="ratio ratio-1x1" style="width: 20px">
+                        <img
+                          class="rounded-circle img-fluid"
+                          src="https://www.clipartmax.com/png/middle/190-1902997_pippo-immagini-pippo.png"
+                          alt="Pippo"
+                        />
+                      </div>
 
-            <section class="row">
-              <div class="col-3">
-                <img src="" alt="" />
+                      <p class="m-0">Mario Rossi</p>
+                    </div>
+
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Profilo</a></li>
+                      <li>
+                        <a id="notifications" class="dropdown-item" href="#"
+                          >Notifiche</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-              <div class="col-6"></div>
-              <div class="col-3"></div>
+              <div class="container">
+                <section class="row bg-black bg-gradient mt-1">
+                  <div class="col-3">
+                    <div>
+                      <img
+                        src="./assets/imgs/main/image-1.jpg"
+                        alt=""
+                        class="img-fluid"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <h5></h5>
+                  </div>
+                  <div class="col-3"></div>
+                </section>
+              </div>
             </section>
+            <div class="container">
+              <section class="row bg-black bg-gradient mt-1">
+                <div class="col-3">
+                  <div>
+                    <img
+                      src="./assets/imgs/main/image-1.jpg"
+                      alt=""
+                      class="img-fluid"
+                    />
+                  </div>
+                </div>
+                <div class="col-6">
+                  <h5></h5>
+                </div>
+                <div class="col-3"></div>
+              </section>
+            </div>
           </div>
-
-          <div id="dragHandle"></div>
         </div>
+
         <div id="rightBar" class="bg-black p-3">
           <div class="row">
             <div
