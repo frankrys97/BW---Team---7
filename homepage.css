@@ -62,3 +62,10 @@ a {
     margin: 0;
   }
 }
+.card {
+  height: 120px;
+}
+.card-img-top {
+  max-height: 120px; /* Altezza massima per le immagini */
+  width: auto;
+}
