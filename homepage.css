@@ -37,6 +37,7 @@ ul, li, a {
 #dragHandle {
   width: 2px;
   background-color: black;
+  height: 90vh;
 }
 
 #dragHandle:hover {
