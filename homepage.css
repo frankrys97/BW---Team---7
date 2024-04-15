@@ -7,7 +7,7 @@
 }
 
 #leftBar {
-  min-width: 250px;
+  min-width: 300px;
   height: 100vh;
   a:hover {
     color: white;
@@ -21,7 +21,7 @@
 }
 
 #rightBar {
-  min-width: 200px;
+  min-width: 250px;
   height: 100vh;
     background-color: aqua;
 }
@@ -30,4 +30,31 @@ ul, li, a {
     color: inherit;
 }
 
+#dragHandle {
+  width: 2px;
+  height: 100vh;
+  background-color: black;
+}
 
+#dragHandle:hover {
+  cursor: ew-resize;
+  background-color: white;
+}
+
+
+.active-sidebar {
+    color: white;
+}
+
+.rounded-circle-custom {
+    border-radius: 50%;
+}
+
+/* .friends {
+    h3 {
+        font-size: 15px;
+    }
+    p {
+        font-size: 10px;
+    }
+} */

@@ -26,7 +26,7 @@
             </a>
 
             <ul class="nav nav-pills flex-column mb-auto gap-2 mt-3">
-              <li class="nav-item">
+              <li class="nav-item active-sidebar">
                 <a
                   href="#"
                   class="d-flex gap-3 align-items-center text-decoration-none"
@@ -136,11 +136,63 @@
               </li>
             </ul>
           </div>
-          <hr>
+          <hr />
           <div data-bs-spy="scroll"></div>
         </div>
-        <div id="centerBar" class="bg-dark"></div>
-        <div id="rightBar" class="bg-black"></div>
+        <div id="centerBar" class="bg-secondary-subtle">
+          <div id="dragHandle"></div>
+        </div>
+        <div id="rightBar" class="bg-black p-3">
+          <div class="row">
+            <div
+              class="col-12 d-flex justify-content-between align-items-center text-body-secondary"
+            >
+              <div>
+                <p class="m-0 text-white">Attività ed amici</p>
+              </div>
+              <div>
+                <button
+                  class="btn btn-link text-body-secondary"
+                  style="width: 5px"
+                >
+                  <i class="bi bi-person-plus"></i>
+                </button>
+                <button
+                  class="btn btn-link text-body-secondary"
+                  style="width: 5px"
+                >
+                  <i class="bi bi-x-lg"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+          <div class="row mt-4">
+            <div class="col-3">
+              <div class="ratio ratio-1x1">
+                <img
+                  class="rounded-circle img-fluid"
+                  src="https://www.clipartmax.com/png/middle/190-1902997_pippo-immagini-pippo.png"
+                  alt="Pippo"
+                />
+              </div>
+            </div>
+            <div class="col-8 d-flex flex-column align-items-start friends">
+                <h3>Pippo</h3>
+                <p>In Camera • Yumi Zouma</p>
+                <p><i class="bi bi-record-circle"></i> EP III</p>
+            </div>
+            <div class="col-1">
+                <p>4 ore</p>
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+        </div>
       </div>
     </main>
 
@@ -149,5 +201,6 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script src="./homepage.js"></script>
   </body>
 </html>
