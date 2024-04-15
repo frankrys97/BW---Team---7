@@ -76,4 +76,10 @@ a {
     margin: 0;
   }
 }
-
+footer {
+  height: 10vh;
+  p {
+    margin-bottom: 0;
+    font-size: 0.75em;
+  }
+}
