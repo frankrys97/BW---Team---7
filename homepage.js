@@ -40,3 +40,9 @@ document.addEventListener("mousemove", (e) => {
 document.addEventListener("mouseup", () => {
   isResizing = false;
 });
+
+const closeRightBar = document.querySelector(".closeRightBar");
+
+closeRightBar.addEventListener("click", () => {
+  rightBar.style.display = "none";
+})
