@@ -14,6 +14,8 @@ dragHandle.addEventListener("mousedown", (e) => {
 document.addEventListener("mousemove", (e) => {
   if (!isResizing) return;
 
+  console.log(isResizing)
+
   const delta = e.clientX - lastX;
   const newWidth = leftBar.offsetWidth + delta;
 
@@ -39,10 +41,19 @@ document.addEventListener("mousemove", (e) => {
 
 document.addEventListener("mouseup", () => {
   isResizing = false;
+  console.log(isResizing)
 });
 
 const closeRightBar = document.querySelector(".closeRightBar");
 
 closeRightBar.addEventListener("click", () => {
   rightBar.style.display = "none";
-})
+});
+
+const notifications = document.getElementById("notifications");
+
+notifications.addEventListener("click", () => {
+  rightBar.style.display = "block";
+});
+
+

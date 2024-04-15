@@ -13,18 +13,18 @@ body {
   a:hover {
     color: white;
   }
-  height: 100vh;
+  height: 90vh;
 }
 
 #centerBar {
   width: 100%;
-  height: 100vh;
+  height: 90vh;
 }
 
 #rightBar {
   min-width: 275px;
   background-color: aqua;
-  height: 100vh;
+  height: 90vh;
 }
 
 ul,
@@ -34,9 +34,9 @@ a {
 }
 
 #dragHandle {
-  width: 10px;
+  width: 5px;
   background-color: black;
-  height: 100vh;
+  height: 90vh;
 }
 
 #dragHandle:hover {
