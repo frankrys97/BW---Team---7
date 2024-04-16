@@ -139,7 +139,10 @@ const findTrack = (url) => {
     })
     .then((playlist) => {
       console.log(playlist);
-      if (!playlist.hasOwnProperty("error") && playlist.tracks.data.length > 0) {
+      if (
+        !playlist.hasOwnProperty("error") &&
+        playlist.tracks.data.length > 0
+      ) {
         const imageTracks =
           playlist.tracks.data[
             Math.floor(Math.random() * playlist.tracks.data.length)
@@ -217,12 +220,57 @@ const findTrack = (url) => {
     });
 };
 
-
+const randomizeSongs = [];
 
 const findPlaylistLeft = (url) => {
-  
-}
+  fetch(url, {
+    headers: {
+      "X-RapidAPI-Key": myKeyFrancesco,
+      "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Request failed!");
+      }
+    })
+    .then((playlist) => {
+      if (
+        !playlist.hasOwnProperty("error") &&
+        playlist.tracks.data.length > 0
+      ) {
+        const songs = playlist.tracks.data.slice(0, 10);
+        console.log(songs);
+        for (let i = 0; i < 4; i++) {
+          randomizeSongs.push(...shuffleArray(songs));
+        }
 
+        const playlistContainer = document.getElementById("playlistContainer");
+        randomizeSongs.forEach((song) => {
+          const title = song.title;
+          const titleElement = document.createElement("p");
+          titleElement.innerHTML = title;
+          playlistContainer.appendChild(titleElement);
+        });
+      } else {
+        findPlaylistLeft(
+          `https://deezerdevs-deezer.p.rapidapi.com/playlist/${Math.floor(
+            Math.random() * 100000
+          )}`
+        );
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+const shuffleArray = (array) => {
+  return array.sort(() => Math.random() - 0.5);
+};
 
 window.onload = () => {
   findTrack(
@@ -230,11 +278,9 @@ window.onload = () => {
       Math.random() * 100000
     )}`
   );
-
-
-
-
-
-
-  
+  findPlaylistLeft(
+    `https://deezerdevs-deezer.p.rapidapi.com/playlist/${Math.floor(
+      Math.random() * 100000
+    )}`
+  );
 };
