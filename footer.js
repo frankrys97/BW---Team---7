@@ -4,12 +4,12 @@ const volumeMedio = document.getElementById("VolumeMedio");
 const volumeBasso = document.getElementById("volumeBasso");
 const volumeDisattivato = document.getElementById("volumeDisattivato");
 const btnVolume = document.getElementById("btnVolume");
-btnVolume.addEventListener("click", () => {
-  volumeDisattivato.classList.remove("d-none");
-  volumeAlto.classList.add("d-none");
-  volumeBasso.classList.add("d-none");
-  volumeMedio.classList.add("d-none");
-});
+// btnVolume.addEventListener("click", () => {
+//   volumeDisattivato.classList.remove("d-none");
+//   volumeAlto.classList.add("d-none");
+//   volumeBasso.classList.add("d-none");
+//   volumeMedio.classList.add("d-none");
+// });
 
 volumeInterno.addEventListener("mousedown", (event) => {
   event.preventDefault();

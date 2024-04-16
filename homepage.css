@@ -1,7 +1,7 @@
 @font-face {
   font-family: "CircularStd";
-  src: url(assets/fonts/CircularStd-Black.otf) format("Black"),
-    url(assets/fonts/CircularStd-BlackItalic.otf) format(""),
+  src: url(assets/fonts/CircularStd-Black.otf),
+    url(assets/fonts/CircularStd-BlackItalic.otf),
     url(assets/fonts/CircularStd-Bold.otf),
     url(assets/fonts/CircularStd-BoldItalic.otf),
     url(assets/fonts/CircularStd-Book.otf),
