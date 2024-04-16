@@ -101,7 +101,13 @@ footer {
     fill: currentColor;
     width: 20px;
   }
+  button:hover:not(#playButton) {
+    svg {
+      fill: rgb(205, 204, 204);
+    }
+  }
 }
+
 .card {
   height: 120px;
 }
