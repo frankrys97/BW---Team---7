@@ -48,5 +48,4 @@ const onMouseMove = (event) => {
 
 const onMouseUp = () => {
   document.removeEventListener("mousemove", onMouseMove);
-  document.removeEventListener("mouseup", onMouseUp);
 };
