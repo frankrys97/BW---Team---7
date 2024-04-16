@@ -141,7 +141,7 @@
         </div>
         <div id="dragHandle"></div>
         <div id="centerBar" class="bg-secondary-subtle" data-bs-spy="scroll">
-          <div class="container">
+          <div class="container p-4 pt-1">
             <section class="row mt-3">
               <div
                 class="col-12 d-flex justify-content-between align-items-center"
@@ -193,7 +193,105 @@
               </div>
             </section>
           </div>
-          <div class="container"></div>
+          <div class="container p-4 pt-0 text-white" id="containerAlbum">
+            <!-- <div class="row">
+              <div class="col-2 pe-md-0">
+                <img
+                  src="assets/imgs/main/image-10.jpg"
+                  class="img-fluid"
+                  alt="Immagine Album"
+                />
+              </div>
+              <div class="col-10 d-flex flex-column px-3">
+                <p class="mt-auto mb-0">Album</p>
+                <h1>Nome Album</h1>
+                <p class="mb-0">Nome Artista • Data album • Totale Brani</p>
+              </div>
+            </div> -->
+          </div>
+          <div class="container" id="containerOfSongThisAlbum">
+            <div class="container pt-4 mb-2 d-flex" id="menu">
+              <button
+                class="btn d-flex align-items-center me-2 justify-content-center"
+                id="playButton"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="33"
+                  fill="black"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"
+                  />
+                </svg>
+              </button>
+
+              <button class="btn d-flex align-items-center">
+                <i class="bi bi-heart fs-5"></i>
+              </button>
+              <button class="btn d-flex align-items-center">
+                <i class="bi bi-download fs-5"></i>
+              </button>
+              <button class="btn d-flex align-items-center">
+                <i class="bi bi-three-dots fs-5"></i>
+              </button>
+            </div>
+            <div class="container border-bottom text-body-tertiary">
+              <div class="row px-2 me-4">
+                <div class="col-6">
+                  <div class="d-flex align-items-center">
+                    <div class="p-2">
+                      <span class="song-number">#</span>
+                    </div>
+                    <div class="p-2">
+                      <div class="song-info">
+                        <div class="song-text"><p>Titolo</p></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="col-3 d-flex align-items-center justify-content-end"
+                >
+                  <p class="text-end">Riproduzioni</p>
+                </div>
+                <div
+                  class="col-3 d-flex align-items-center justify-content-end"
+                >
+                  <i class="bi bi-play-circle text-end"></i>
+                </div>
+              </div>
+            </div>
+            <div class="container mt-2" id="containerTrack">
+              <!-- <div class="row px-2 me-4">
+                <div class="col-6">
+                  <div class="d-flex align-items-center">
+                    <div class="p-2">
+                      <span class="song-number">1</span>
+                    </div>
+                    <div class="p-2">
+                      <div class="song-info">
+                        <div class="song-text"><h4>Noma Canzone</h4></div>
+                        <div class="song-artist"><p>Nome Artista</p></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="col-3 d-flex align-items-center justify-content-end"
+                >
+                  <p>213123.1233</p>
+                </div>
+                <div
+                  class="col-3 d-flex align-items-center justify-content-end"
+                >
+                  <p class="text-end">2:56</p>
+                </div>
+              </div> -->
+            </div>
+          </div>
         </div>
         <div id="rightBar" class="bg-black p-3">
           <div class="row">
@@ -538,7 +636,7 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-    <script src="./homepage.js"></script>
+
     <script src="album.js"></script>
     <script src="footer.js"></script>
   </body>

@@ -1,4 +1,18 @@
 #centerBar{
     background: rgb(22,22,22);
-    background: linear-gradient(0deg, rgba(22,22,22,1) 40%, rgba(252,215,84,1) 55%, rgba(255,208,111,1) 100%);
+    background: linear-gradient(0deg, rgba(22,22,22,1) 40%, rgb(94, 83, 44) 55%, rgba(255,208,111,1) 100%);
+}
+#containerOfSongThisAlbum{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+#containerOfSongThisAlbum p{
+    margin: 0;
+}
+#playButton{
+    background-color: #1ed760;
+    border: none;
+    border-radius: 50%;
+}
+#containerAlbum h1{
+    font-size: 3.5em;
 }
