@@ -1,0 +1,4 @@
+#centerBar{
+    background: rgb(22,22,22);
+    background: linear-gradient(0deg, rgba(22,22,22,1) 40%, rgba(252,215,84,1) 55%, rgba(255,208,111,1) 100%);
+}
