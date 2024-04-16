@@ -91,3 +91,19 @@ a {
     margin: 0;
   }
 }
+footer {
+  height: 10vh;
+  p {
+    margin-bottom: 0;
+    font-size: 1em;
+  }
+  svg {
+    fill: currentColor;
+    width: 20px;
+  }
+  button:hover {
+    svg {
+      fill: antiquewhite;
+    }
+  }
+}
