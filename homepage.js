@@ -251,7 +251,9 @@ const findPlaylistLeft = (url) => {
         const playlistContainer = document.getElementById("playlistContainer");
         randomizeSongs.forEach((song) => {
           const title = song.title;
-          const titleElement = document.createElement("p");
+          const titleElement = document.createElement("a");
+          titleElement.classList.add("text-decoration-none");
+          titleElement.href = `#`;
           titleElement.innerHTML = title;
           playlistContainer.appendChild(titleElement);
         });
@@ -272,6 +274,193 @@ const shuffleArray = (array) => {
   return array.sort(() => Math.random() - 0.5);
 };
 
+const findAlbumCard = (url) => {
+  fetch(url, {
+    headers: {
+      "X-RapidAPI-Key": myKeyFrancesco,
+      "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Request failed!");
+      }
+    })
+    .then((album) => {
+      console.log(album);
+      if (!album.hasOwnProperty("error")) {
+        const imageAlbum = album.picture_big;
+        const albumTitle = album.title;
+        const albumCreator = album.creator.name;
+
+        const albumCard = document.getElementById("albums");
+
+        const col = document.createElement("div");
+        col.classList.add("col");
+
+        const card = document.createElement("div");
+        card.classList.add("card", "mb-4", "shadow-sm", "h-100");
+
+        card.innerHTML = `
+        
+        
+        
+        <img
+        src= ${imageAlbum}
+        class="bd-placeholder-img card-img-top"
+      />
+      <div class="card-body d-flex flex-column justify-content-start align-items-start p-0 mt-2 ms-1">
+   
+        <h5 class="card-title w-100">${albumTitle}</h5>
+   
+    
+        <p class="card-text text-white-50">
+          ${albumCreator}
+        </p>
+      </div>
+        `;
+        col.appendChild(card);
+        albumCard.appendChild(col);
+      } else {
+        findAlbumCard(
+          `https://deezerdevs-deezer.p.rapidapi.com/playlist/${Math.floor(
+            Math.random() * 100000
+          )}`
+        );
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+const findAlbumCard2 = (url) => {
+  fetch(url, {
+    headers: {
+      "X-RapidAPI-Key": myKeyCarlo,
+      "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Request failed!");
+      }
+    })
+    .then((album) => {
+      console.log(album);
+      if (!album.hasOwnProperty("error")) {
+        const imageAlbum = album.picture_big;
+        const albumTitle = album.title;
+        const albumCreator = album.creator.name;
+
+        const albumCard = document.getElementById("albums2");
+
+        const col = document.createElement("div");
+        col.classList.add("col");
+
+        const card = document.createElement("div");
+        card.classList.add("card", "mb-4", "shadow-sm", "h-100");
+
+        card.innerHTML = `
+        
+        
+        
+        <img
+        src= ${imageAlbum}
+        class="bd-placeholder-img card-img-top"
+      />
+      <div class="card-body d-flex flex-column justify-content-start align-items-start p-0 mt-2 ms-1">
+   
+        <h5 class="card-title w-100">${albumTitle}</h5>
+   
+    
+        <p class="card-text text-white-50">
+          ${albumCreator}
+        </p>
+      </div>
+        `;
+        col.appendChild(card);
+        albumCard.appendChild(col);
+      } else {
+        findAlbumCard2(
+          `https://deezerdevs-deezer.p.rapidapi.com/playlist/${Math.floor(
+            Math.random() * 100000
+          )}`
+        );
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+const findAlbumCard3 = (url) => {
+  fetch(url, {
+    headers: {
+      "X-RapidAPI-Key": myKeyCarlo,
+      "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Request failed!");
+      }
+    })
+    .then((album) => {
+      console.log(album);
+      if (!album.hasOwnProperty("error")) {
+        const imageAlbum = album.picture_big;
+        const albumTitle = album.title;
+        const albumCreator = album.creator.name;
+
+        const albumCard = document.getElementById("albums3");
+
+        const col = document.createElement("div");
+        col.classList.add("col");
+
+        const card = document.createElement("div");
+        card.classList.add("card", "mb-4", "shadow-sm", "h-100");
+
+        card.innerHTML = `
+        
+        
+        
+        <img
+        src= ${imageAlbum}
+        class="bd-placeholder-img card-img-top"
+      />
+      <div class="card-body d-flex flex-column justify-content-start align-items-start p-0 mt-2 ms-1">
+   
+        <h5 class="card-title w-100">${albumTitle}</h5>
+   
+    
+        <p class="card-text text-white-50">
+          ${albumCreator}
+        </p>
+      </div>
+        `;
+        col.appendChild(card);
+        albumCard.appendChild(col);
+      } else {
+        findAlbumCard3(
+          `https://deezerdevs-deezer.p.rapidapi.com/playlist/${Math.floor(
+            Math.random() * 100000
+          )}`
+        );
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
 window.onload = () => {
   findTrack(
     `https://deezerdevs-deezer.p.rapidapi.com/playlist/${Math.floor(
@@ -283,4 +472,22 @@ window.onload = () => {
       Math.random() * 100000
     )}`
   );
+
+  for (let i = 0; i < 5; i++) {
+    findAlbumCard(
+      `https://deezerdevs-deezer.p.rapidapi.com/playlist/${Math.floor(
+        Math.random() * 100000
+      )}`
+    );
+    findAlbumCard2(
+      `https://deezerdevs-deezer.p.rapidapi.com/playlist/${Math.floor(
+        Math.random() * 100000
+      )}`
+    );
+    findAlbumCard3(
+      `https://deezerdevs-deezer.p.rapidapi.com/playlist/${Math.floor(
+        Math.random() * 100000
+      )}`
+    );
+  }
 };
