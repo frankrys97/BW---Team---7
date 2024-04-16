@@ -138,22 +138,24 @@ const findTrack = (url) => {
       }
     })
     .then((playlist) => {
-      const imageTracks =
-        playlist.tracks.data[
-          Math.floor(Math.random() * playlist.tracks.data.length)
-        ].album.cover_big;
-      const artistName =
-        playlist.tracks.data[
-          Math.floor(Math.random() * playlist.tracks.data.length)
-        ].artist.name;
-      const albumTitle =
-        playlist.tracks.data[
-          Math.floor(Math.random() * playlist.tracks.data.length)
-        ].album.title;
+      console.log(playlist);
+      if (!playlist.hasOwnProperty("error") && playlist.tracks.data.length > 0) {
+        const imageTracks =
+          playlist.tracks.data[
+            Math.floor(Math.random() * playlist.tracks.data.length)
+          ].album.cover_big;
+        const artistName =
+          playlist.tracks.data[
+            Math.floor(Math.random() * playlist.tracks.data.length)
+          ].artist.name;
+        const albumTitle =
+          playlist.tracks.data[
+            Math.floor(Math.random() * playlist.tracks.data.length)
+          ].album.title;
 
-      const annuncio = document.getElementById("annuncio");
+        const annuncio = document.getElementById("annuncio");
 
-      annuncio.innerHTML = `
+        annuncio.innerHTML = `
     
     
     
@@ -202,6 +204,13 @@ const findTrack = (url) => {
   </div>
     
     `;
+      } else {
+        findTrack(
+          `https://deezerdevs-deezer.p.rapidapi.com/playlist/${Math.floor(
+            Math.random() * 100000
+          )}`
+        );
+      }
     })
     .catch((error) => {
       console.log(error);
@@ -210,10 +219,22 @@ const findTrack = (url) => {
 
 
 
+const findPlaylistLeft = (url) => {
+  
+}
+
+
 window.onload = () => {
   findTrack(
     `https://deezerdevs-deezer.p.rapidapi.com/playlist/${Math.floor(
       Math.random() * 100000
     )}`
   );
+
+
+
+
+
+
+  
 };
