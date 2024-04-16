@@ -1,5 +1,20 @@
+@font-face {
+  font-family: "CircularStd";
+  src: url(assets/fonts/CircularStd-Black.otf),
+    url(assets/fonts/CircularStd-BlackItalic.otf),
+    url(assets/fonts/CircularStd-Bold.otf),
+    url(assets/fonts/CircularStd-BoldItalic.otf),
+    url(assets/fonts/CircularStd-Book.otf),
+    url(assets/fonts/CircularStd-BookItalic.otf),
+    url(assets/fonts/CircularStd-Light.otf),
+    url(assets/fonts/CircularStd-LightItalic.otf),
+    url(assets/fonts/CircularStd-Medium.otf),
+    url(assets/fonts/CircularStd-MediumItalic.otf);
+}
+
 body {
   height: 100vh;
+  font-family: "CircularStd", sans-serif;
 }
 
 #home {
@@ -19,6 +34,20 @@ body {
 #centerBar {
   width: 100%;
   height: 90vh;
+  small {
+    font-size: 10px;
+  }
+  .playButton {
+    background-color: #1db954;
+  }
+  .hiddenButton {
+    font-size: 10px;
+    background-color: rgba(40, 39, 39, 0.571);
+  }
+}
+
+.hiddenButton:hover {
+  cursor: pointer;
 }
 
 #rightBar {
@@ -61,4 +90,32 @@ a {
     font-size: 10px;
     margin: 0;
   }
+}
+footer {
+  height: 10vh;
+  p {
+    margin-bottom: 0;
+    font-size: 1em;
+  }
+  svg {
+    fill: currentColor;
+    width: 20px;
+  }
+  button:hover {
+    svg {
+      fill: antiquewhite;
+    }
+  }
+}
+
+.card.custom-bg:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.5s ease;
+}
+.card {
+  height: 120px;
+}
+.card-img-top {
+  max-height: 120px;
+  width: auto;
 }
