@@ -122,7 +122,7 @@ const myKeyGiulio = "d470d1fc32mshf7e1a1bbce29cf1p138398jsnd112e2807eda";
 const myKeyMarina = "2e8b5073f4mshff8ce3300bd3f70p160efajsn3e779e2eda67";
 const myKeyCarlo = "62aa31e1edmsh5b877960812af61p1c1b11jsncd4891d90e66";
 
-const findPlaylist = (url) => {
+const findTrack = (url) => {
   fetch(url, {
     headers: {
       "X-RapidAPI-Key": myKeyFrancesco,
@@ -208,8 +208,10 @@ const findPlaylist = (url) => {
     });
 };
 
+
+
 window.onload = () => {
-  findPlaylist(
+  findTrack(
     `https://deezerdevs-deezer.p.rapidapi.com/playlist/${Math.floor(
       Math.random() * 100000
     )}`
