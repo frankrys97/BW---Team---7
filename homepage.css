@@ -101,4 +101,9 @@ footer {
     fill: currentColor;
     width: 20px;
   }
+  button:hover {
+    svg {
+      fill: antiquewhite;
+    }
+  }
 }
