@@ -56,10 +56,110 @@ notifications.addEventListener("click", () => {
   rightBar.style.display = "block";
 });
 
-
 const hiddenButton = document.querySelector(".hiddenButton");
 const annuncio = document.getElementById("annuncio");
 
-hiddenButton.addEventListener("click", () => {
-  annuncio.style.display = "none";
-})
+// hiddenButton.addEventListener("click", () => {
+//   annuncio.style.display = "none";
+// });
+
+// Popolazione album
+
+const myKeyFrancesco = "29cd1ae8c9msh33b66faee0e4446p1a9f60jsnb42fe6b9c1f5";
+const myKeyGiulio = "d470d1fc32mshf7e1a1bbce29cf1p138398jsnd112e2807eda";
+const myKeyMarina = "2e8b5073f4mshff8ce3300bd3f70p160efajsn3e779e2eda67";
+const myKeyCarlo = "62aa31e1edmsh5b877960812af61p1c1b11jsncd4891d90e66";
+
+const findPlaylist = (url) => {
+  fetch(url, {
+    headers: {
+      "X-RapidAPI-Key": myKeyFrancesco,
+      "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Request failed!");
+      }
+    })
+    .then((playlist) => {
+      const imageTracks =
+        playlist.tracks.data[
+          Math.floor(Math.random() * playlist.tracks.data.length)
+        ].album.cover_big;
+      const artistName =
+        playlist.tracks.data[
+          Math.floor(Math.random() * playlist.tracks.data.length)
+        ].artist.name;
+      const albumTitle =
+        playlist.tracks.data[
+          Math.floor(Math.random() * playlist.tracks.data.length)
+        ].album.title;
+
+      const annuncio = document.getElementById("annuncio");
+
+      annuncio.innerHTML = `
+    
+    
+    
+    <div class="col-3">
+    <div>
+      <img
+        src="${imageTracks}"
+        alt=""
+        class="img-fluid"
+        id="imageAnnuncio"
+      />
+    </div>
+  </div>
+  <div class="col-6">
+    <small>ALBUM</small>
+
+    <h2>${albumTitle}</h2>
+    <p>${artistName}</p>
+    <p>Ascolta il nuovo singolo di ${artistName}!</p>
+    <div class="d-flex gap-2">
+      <button
+        class="btn playButton rounded rounded-pill px-4 text-black fw-semibold"
+      >
+        Play
+      </button>
+      <button
+        class="btn saveButton rounded rounded-pill px-4 btn-outline-light"
+      >
+        Salva
+      </button>
+      <button class="btn threeDotsButton rounded rounded-pill">
+        <i class="bi bi-three-dots"></i>
+      </button>
+    </div>
+  </div>
+  <div
+    class="col-3 d-flex justify-content-end align-items-start"
+    id="hiddenButtonContainer"
+  >
+    <button
+      class="btn text-white-50 rounded rounded-pill py-1 hiddenButton fw-semibold"
+      href="#annuncio"
+    >
+      NASCONDI ANNUNCI
+    </button>
+  </div>
+    
+    `;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+window.onload = () => {
+  findPlaylist(
+    `https://deezerdevs-deezer.p.rapidapi.com/playlist/${Math.floor(
+      Math.random() * 100000
+    )}`
+  );
+};
