@@ -1,6 +1,8 @@
 #centerBar{
     background: rgb(22,22,22);
     background: linear-gradient(0deg, rgba(22,22,22,1) 40%, rgb(94, 83, 44) 55%, rgba(255,208,111,1) 100%);
+    overflow-y: auto;
+    
 }
 #containerOfSongThisAlbum{
     background-color: rgba(0, 0, 0, 0.1);
@@ -14,5 +16,172 @@
     border-radius: 50%;
 }
 #containerAlbum h1{
-    font-size: 3.5em;
+    font-size: 3.3em;
 }
+#containerAlbum p{
+    font-size: 0.8em;
+    letter-spacing: 1px;
+}
+#containerTrack p{
+    font-size: 0.8em;
+}
+#containerTrack{
+    padding-bottom: 100px;
+}
+footer{
+    background-color: rgba(0, 0, 0, 1);
+}
+
+@media (max-width: 1183px) {
+    #containerAlbum h1 {
+        font-size: 1.5em;
+    }
+}
+
+
+@media (min-width: 1184px) and (max-width: 1443px) {
+    #containerAlbum h1 {
+        font-size: 2em;
+    }
+}
+
+
+@media (min-width: 1444px) and (max-width: 1700px) {
+    #containerAlbum h1 {
+        font-size: 2.5em;
+    }
+}
+
+
+@media (min-width: 1701px) {
+    #containerAlbum h1 {
+        font-size: 3em; 
+    }
+}
+/* ////////////////HOMEPAGE/////////////////// */
+@font-face {
+    font-family: "CircularStd";
+    src: url(assets/fonts/CircularStd-Black.otf),
+      url(assets/fonts/CircularStd-BlackItalic.otf),
+      url(assets/fonts/CircularStd-Bold.otf),
+      url(assets/fonts/CircularStd-BoldItalic.otf),
+      url(assets/fonts/CircularStd-Book.otf),
+      url(assets/fonts/CircularStd-BookItalic.otf),
+      url(assets/fonts/CircularStd-Light.otf),
+      url(assets/fonts/CircularStd-LightItalic.otf),
+      url(assets/fonts/CircularStd-Medium.otf),
+      url(assets/fonts/CircularStd-MediumItalic.otf);
+  }
+  
+  body {
+    height: 100vh;
+    font-family: "CircularStd", sans-serif;
+  }
+  
+  #home {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
+  
+  #leftBar {
+    height: 100vh;
+    min-width: 250px;
+    a:hover {
+      color: white;
+    }
+    
+  }
+  
+  #centerBar {
+    width: 100%;
+    height: 100vh;
+    small {
+      font-size: 10px;
+    }
+    .playButton {
+      background-color: #1db954;
+    }
+    .hiddenButton {
+      font-size: 10px;
+      background-color: rgba(40, 39, 39, 0.571);
+    }
+  }
+  
+  .hiddenButton:hover {
+    cursor: pointer;
+  }
+  
+  #rightBar {
+    min-width: 15%;
+    background-color: aqua;
+    height: 100vh;
+  }
+  
+  ul,
+  li,
+  a {
+    color: inherit;
+  }
+  
+  #dragHandle {
+    width: 5px;
+    background-color: black;
+    height: 90vh;
+  }
+  
+  #dragHandle:hover {
+    cursor: ew-resize;
+    background-color: white;
+  }
+  
+  .active-sidebar {
+    color: white;
+  }
+  
+  .rounded-circle-custom {
+    border-radius: 50%;
+  }
+  
+  .friends {
+    h3 {
+      font-size: 15px;
+      margin: 0;
+    }
+    p {
+      font-size: 10px;
+      margin: 0;
+    }
+  }
+  footer {
+    height: 10vh;
+    p {
+      margin-bottom: 0;
+      font-size: 1em;
+    }
+    svg {
+      fill: currentColor;
+      width: 20px;
+    }
+    button:hover:not(#playButton) {
+      svg {
+        fill: rgb(205, 204, 204);
+      }
+    }
+  }
+  
+  .card {
+    height: 120px;
+  }
+  .card-img-top {
+    max-height: 120px;
+    width: auto;
+  }
+  .card.custom-bg:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: background-color 0.5s ease;
+  
+  }
+  
+
+
