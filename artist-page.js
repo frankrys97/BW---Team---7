@@ -213,45 +213,6 @@ const findArtist = () => {
               rankTrackContainer,
               durationTrackContainer
             );
-
-            //     listTrack.innerHTML = `
-            //     <div class="d-flex align-items-center justify-content-between">
-            //     <p class="mx-3"></p>
-            //     <div class="mx-3">
-            //       <img
-            //         src="${track.contributors[0].picture_small}"
-            //         alt=""
-            //         class="img-fluid"
-            //         style="width: 75px"
-            //       />
-            //     </div>
-
-            //     <h4 class="mx-3">${track.title_short}</h4>
-
-            //     <p class="mx-3">${track.rank}</p>
-
-            //     <p class="mx-3">${track.duration}</p>
-            //   </div>
-            //   <div>
-            //     <div class="d-flex align-items-center">
-            //       <img
-            //         src="assets/imgs/main/image-13.jpg"
-            //         alt=""
-            //         class="rounded-circle"
-            //         style="width: 100px"
-            //       />
-            //       <div class="mx-3">
-            //         <p>
-            //           <strong>Hai messo mi piace a ${track.lenght} canzoni</strong>
-            //         </p>
-            //         <p>
-            //           <strong>Dei ${track.artist.name}</strong>
-            //         </p>
-            //       </div>
-            //     </div>
-            //   </div>
-
-            //     `;
           });
         });
     })
