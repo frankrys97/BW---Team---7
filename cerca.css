@@ -17,12 +17,6 @@ body {
   font-family: "CircularStd", sans-serif;
 }
 
-#home {
-  display: flex;
-  justify-content: center;
-  flex-wrap: nowrap;
-}
-
 #leftBar {
   min-width: 260px;
   a:hover {
@@ -50,9 +44,14 @@ body {
   cursor: pointer;
 }
 
+#home {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
 #rightBar {
   min-width: 240px;
-  background-color: aqua;
   height: 90vh;
 }
 
@@ -101,18 +100,13 @@ footer {
     fill: currentColor;
     width: 20px;
   }
-=========
-.card {
-  height: 120px;
+  button:hover:not(#playButton) {
+    svg {
+      fill: rgb(205, 204, 204);
+    }
+  }
 }
-.card-img-top {
-  max-height: 120px;
-  width: auto;
-  object-fit: cover;
-  aspect-ratio: 1 / 1;
-}
-.card.custom-bg:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  transition: background-color 0.5s ease;
->>>>>>>>> Temporary merge branch 2
+
+#colorCard a {
+  text-decoration: none;
 }
