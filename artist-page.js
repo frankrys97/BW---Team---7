@@ -1,8 +1,16 @@
 const params = new URLSearchParams(window.location.search);
 const id = params.get("artistPage");
-const URL = id
-  ? "https://deezerdevs-deezer.p.rapidapi.com/artist/" + id
-  : "https://deezerdevs-deezer.p.rapidapi.com/artist/412";
+const q = params.get("QueryPage");
+let URL =
+  "https://deezerdevs-deezer.p.rapidapi.com/artist/412";
+if (id) {
+  URL =
+    "https://deezerdevs-deezer.p.rapidapi.com/artist/" + id;
+} else if (q) {
+  URL =
+    "https://deezerdevs-deezer.p.rapidapi.com/search?q=" +
+    q;
+}
 
 const volumeInterno =
   document.getElementById("volumeInterno");
@@ -60,6 +68,23 @@ const onMouseMove = (event) => {
 const onMouseUp = () => {
   document.removeEventListener("mousemove", onMouseMove);
 };
+// fino a qui la funzione del volume e del movimento della pagina
+
+const closeBarRight = () => {
+  const closeBar = document.getElementById("closeBtn");
+  const rightBar = document.getElementById("rightBar");
+  const openBar = document.getElementById("notifications");
+  const centerBar = document.getElementById("centerBar");
+  console.log(closeBar);
+  closeBar.addEventListener("click", () => {
+    rightBar.classList.add("d-none");
+  });
+  openBar.addEventListener("click", () => {
+    rightBar.classList.remove("d-none");
+  });
+};
+closeBarRight();
+
 const myKeyMarina =
   "2e8b5073f4mshff8ce3300bd3f70p160efajsn3e779e2eda67";
 const findArtist = () => {
@@ -85,25 +110,18 @@ const findArtist = () => {
       imageCopertina.style = `background-image: url(${artist.picture_xl})`;
       const containerTitle =
         document.getElementById("containerName");
-      containerTitle.innerHTML = `<h3 class="mb-0">Artista verificato</h3>
+
+      containerTitle.innerHTML = `<h3 class="mb-0 d-none d-lg-inline-block">Artista verificato</h3>
 <h1 class="display-2 mb-0">${artist.name}</h1>
-<p class="mt-0 fs-5"><span>${artist.nb_fan}</span> ascoltatori mansili</p>`;
+<p class="mt-0 fs-5 d-none d-lg-inline-block"><span>${artist.nb_fan}</span> ascoltatori mansili</p>`;
+
       const nomeArtista =
         document.getElementById("nomeArtista");
 
       nomeArtista.innerText = artist.name;
 
-      //       imageCopertina.innerHTML = `
-      // <div class="card text-bg-dark">
-      //   <img src="${artist.picture_xl}" class="card-img" alt="...">
-      //   <div class="card-img-overlay">
-      //     <h5 class="card-title">${artist.name}</h5>
-
-      //   </div>
-      // </div>`;
-
       console.log(artist.tracklist);
-      //   imageCopertina.style.backgroundImage(artist.picture_big);
+
       console.dir(imageCopertina);
       console.log(artist.picture_xl);
 

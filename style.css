@@ -1,0 +1,120 @@
+@font-face {
+  font-family: "CircularStd";
+  src: url(assets/fonts/CircularStd-Black.otf),
+    url(assets/fonts/CircularStd-BlackItalic.otf),
+    url(assets/fonts/CircularStd-Bold.otf),
+    url(assets/fonts/CircularStd-BoldItalic.otf),
+    url(assets/fonts/CircularStd-Book.otf),
+    url(assets/fonts/CircularStd-BookItalic.otf),
+    url(assets/fonts/CircularStd-Light.otf),
+    url(assets/fonts/CircularStd-LightItalic.otf),
+    url(assets/fonts/CircularStd-Medium.otf),
+    url(assets/fonts/CircularStd-MediumItalic.otf);
+}
+
+body {
+  height: 100vh;
+  font-family: "CircularStd", sans-serif;
+  overflow: hidden;
+}
+
+#home {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+#leftBar {
+  min-width: 300px;
+  a:hover {
+    color: white;
+  }
+  height: 90vh;
+}
+
+#centerBar {
+  width: 100%;
+  height: 100vh;
+  small {
+    font-size: 10px;
+  }
+  .playButton {
+    background-color: #1db954;
+  }
+  .hiddenButton {
+    font-size: 10px;
+    background-color: rgba(40, 39, 39, 0.571);
+  }
+}
+
+.hiddenButton:hover {
+  cursor: pointer;
+}
+
+#rightBar {
+  height: 90vh;
+}
+
+ul,
+li,
+a {
+  color: inherit;
+}
+
+#dragHandle {
+  width: 5px;
+  background-color: black;
+  height: 90vh;
+}
+
+#dragHandle:hover {
+  cursor: ew-resize;
+  background-color: white;
+}
+
+.active-sidebar {
+  color: white;
+}
+
+.rounded-circle-custom {
+  border-radius: 50%;
+}
+
+.friends {
+  h3 {
+    font-size: 15px;
+    margin: 0;
+  }
+  p {
+    font-size: 10px;
+    margin: 0;
+  }
+}
+footer {
+  height: 10vh;
+  p {
+    margin-bottom: 0;
+    font-size: 1em;
+  }
+  svg {
+    fill: currentColor;
+    width: 20px;
+  }
+  button:hover:not(#playButton) {
+    svg {
+      fill: rgb(205, 204, 204);
+    }
+  }
+}
+
+.card {
+  height: 120px;
+}
+.card-img-top {
+  max-height: 120px; /* Altezza massima per le immagini */
+  width: auto;
+}
+.card.custom-bg:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.5s ease;
+}
