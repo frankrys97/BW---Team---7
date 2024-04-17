@@ -127,3 +127,10 @@ document.addEventListener("mouseup", () => {
   isResizing = false;
   console.log(isResizing);
 });
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const query = document.getElementById("searchBar").value;
+  window.location.href = `./artist.html?q=${query}`;
+});
+
