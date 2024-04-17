@@ -31,7 +31,15 @@
 /* footer{
     background-color: rgba(0, 0, 0, 1);
 } */
-
+#menuBar{
+  background-color: rgba(0, 0, 0, 0.7);
+}
+#menuBar p{
+  margin-bottom: 0;
+  margin-top: 2px;
+  font-size: 0.8em;
+  
+}
 @media (max-width: 1183px) {
     #containerAlbum h1 {
         font-size: 1.5em;

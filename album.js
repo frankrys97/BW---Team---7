@@ -1,5 +1,5 @@
 const params = new URLSearchParams(window.location.search);
-const id = params.get("artistPage");
+const id = params.get("albumpage");
 const URL = id
   ? "https://deezerdevs-deezer.p.rapidapi.com/album/" + id
   : "https://deezerdevs-deezer.p.rapidapi.com/album/412";
@@ -39,8 +39,8 @@ const findAlbum = (url) => {
       const containerAlbum = document.getElementById("containerAlbum");
       containerAlbum.innerHTML = `<div class="row">
   
-      <div class="col-md-2 col-12 d-flex justify-content-center  ">
-        <img src="${imageAlbum}" class="img-fluid d-none d-md-block" alt="Album Image "/>
+      <div class="col-md-2 col-12 d-flex justify-content-center p-0 ">
+        <img src="${imageAlbum}" class="img-fluid d-none d-md-flex mx-4 " alt="Album Image "/>
         <img src="${imageAlbumMobile}" class="img-fluid d-md-none mt-5" alt="Album Image"/>
       </div>
       <div class="col-md-10 col-12 d-flex flex-column">
@@ -53,7 +53,7 @@ const findAlbum = (url) => {
     </div>`;
       updateBackgroundGradient(imageAlbum);
       createTrackList(
-        `https://striveschool-api.herokuapp.com/api/deezer/artist/13/top?limit=${trackCount}`
+        `https://striveschool-api.herokuapp.com/api/deezer/artist/6069/top?limit=${trackCount}`
       );
     })
     .catch((error) => {
@@ -155,7 +155,7 @@ function divideTime(seconds) {
 }
 
 window.onload = () => {
-  findAlbum("https://deezerdevs-deezer.p.rapidapi.com/album/7090505");
+  findAlbum("https://deezerdevs-deezer.p.rapidapi.com/album/6966025");
 };
 const updateBackgroundGradient = (imageUrl) => {
   const img = new Image();
@@ -169,10 +169,14 @@ const updateBackgroundGradient = (imageUrl) => {
 
       centerBar.style.background = `linear-gradient(0deg, 
         rgba(0, 0, 0, 1) 0%, 
-        rgba(${palette[1][0]}, ${palette[1][1]}, ${palette[1][2]}, 1) 50%, 
+        rgba(0, 0, 0, 1) 49%, 
+        rgba(${palette[1][0]}, ${palette[1][1]}, ${palette[1][2]}, 1) 75%, 
         rgba(${palette[0][0]}, ${palette[0][1]}, ${palette[0][2]}, 1) 100%)`;
     } catch (error) {
       console.error("Error extracting colors", error);
     }
   };
 };
+
+// apparat artId 6069 AlbumId 6966025
+// moderat artId 275723 AlbumId 61295392
