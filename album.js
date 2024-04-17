@@ -1,8 +1,12 @@
 const params = new URLSearchParams(window.location.search);
-const id = params.get("albumpage");
-const URL = id
-  ? "https://deezerdevs-deezer.p.rapidapi.com/album/" + id
-  : "https://deezerdevs-deezer.p.rapidapi.com/album/412";
+const id = params.get("artistPage");
+const q = params.get("QueryPage");
+let URL = "https://deezerdevs-deezer.p.rapidapi.com/album/6966025";
+if (id) {
+  URL = "https://deezerdevs-deezer.p.rapidapi.com/album/" + id;
+} else if (q) {
+  URL = "https://deezerdevs-deezer.p.rapidapi.com/search?q=" + q;
+}
 
 const myKeyFrancesco = "29cd1ae8c9msh33b66faee0e4446p1a9f60jsnb42fe6b9c1f5";
 const myKeyGiulio = "d470d1fc32mshf7e1a1bbce29cf1p138398jsnd112e2807eda";
@@ -33,8 +37,10 @@ const findAlbum = (url) => {
       const releaseDate = data.release_date;
       const trackCount = data.nb_tracks;
       const urlTrackList = data.tracklist;
+      const idArtist = data.artist.id;
       console.log(urlTrackList);
       console.log(trackCount);
+      console.log(data);
 
       const containerAlbum = document.getElementById("containerAlbum");
       containerAlbum.innerHTML = `<div class="row">
@@ -53,7 +59,7 @@ const findAlbum = (url) => {
     </div>`;
       updateBackgroundGradient(imageAlbum);
       createTrackList(
-        `https://striveschool-api.herokuapp.com/api/deezer/artist/6069/top?limit=${trackCount}`
+        `https://striveschool-api.herokuapp.com/api/deezer/artist/${idArtist}/top?limit=${trackCount}`
       );
     })
     .catch((error) => {
@@ -80,12 +86,14 @@ const createTrackList = (urlTrack) => {
       const containerTrack = document.getElementById("containerTrack");
       let htmlContent = "";
       let counter = 1;
+
       data.data.forEach((track) => {
         const trackTitle = track.title;
         const trackArtistName = track.artist.name;
         const trackDuration = divideTime(track.duration);
         // const trackPosition = track.track_position;
         const trackStreaming = track.rank;
+        const artistId = track.artist.id;
 
         htmlContent += `
         <div class="row px-2 me-4 d-none d-md-flex">
@@ -98,7 +106,7 @@ const createTrackList = (urlTrack) => {
               <div class="song-info">
                 <div class="song-text"><h5>${trackTitle}</h5></div>
                 <div class="song-artist text-body-tertiary">
-                  <p>${trackArtistName}</p>
+                <a href="./artist.html?"><p>${trackArtistName}</p></a>                 
                 </div>
               </div>
             </div>
@@ -155,7 +163,7 @@ function divideTime(seconds) {
 }
 
 window.onload = () => {
-  findAlbum("https://deezerdevs-deezer.p.rapidapi.com/album/6966025");
+  findAlbum(URL);
 };
 const updateBackgroundGradient = (imageUrl) => {
   const img = new Image();
