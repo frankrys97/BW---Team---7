@@ -107,6 +107,9 @@ const findArtist = () => {
       const imageCopertina = document.getElementById(
         "imageCopertina"
       );
+      const numeroFan =
+        document.getElementById("numeroFan");
+      numeroFan.innerText = artist.nb_fan;
       imageCopertina.style = `background-image: url(${artist.picture_xl})`;
       const containerTitle =
         document.getElementById("containerName");
