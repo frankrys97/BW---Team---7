@@ -2,8 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Artist Page</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <title>Artisti</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -20,13 +23,24 @@
   <body data-bs-theme="dark">
     <main>
       <div id="home">
-        <div id="leftBar" class="p-3 bg-black text-body-secondary">
-          <div class="d-flex flex-column align-items-start gap-2">
+        <div
+          id="leftBar"
+          class="p-3 bg-black text-body-secondary"
+        >
+          <div
+            class="d-flex flex-column align-items-start gap-2"
+          >
             <a href="#">
-              <img src="./assets/imgs/logo.svg" alt="" style="width: 70px" />
+              <img
+                src="./assets/imgs/logo.svg"
+                alt=""
+                style="width: 70px"
+              />
             </a>
 
-            <ul class="nav nav-pills flex-column mb-auto gap-2 mt-3">
+            <ul
+              class="nav nav-pills flex-column mb-auto gap-2 mt-3"
+            >
               <li class="nav-item active-sidebar">
                 <a
                   href="#"
@@ -92,14 +106,18 @@
                 </a>
               </li>
             </ul>
-            <ul class="nav nav-pills flex-column mb-auto gap-2 mt-3">
+            <ul
+              class="nav nav-pills flex-column mb-auto gap-2 mt-3"
+            >
               <li class="nav-item">
                 <a
                   href="#"
                   class="d-flex gap-3 align-items-center text-decoration-none"
                   aria-current="page"
                 >
-                  <i class="bi bi-plus-square-fill fs-5"></i>
+                  <i
+                    class="bi bi-plus-square-fill fs-5"
+                  ></i>
                   <span>Crea playlist</span>
                 </a>
               </li>
@@ -157,7 +175,9 @@
               <div
                 class="col-12 d-flex justify-content-between align-items-center mt-3"
               >
-                <div class="d-flex align-items-center gap-3">
+                <div
+                  class="d-flex align-items-center gap-3"
+                >
                   <button
                     class="btn bg-black p-0 rounded-circle"
                     style="width: 30px; height: 30px"
@@ -172,7 +192,9 @@
                   </button>
                 </div>
 
-                <div class="d-flex align-items-center gap-3">
+                <div
+                  class="d-flex align-items-center gap-3"
+                >
                   <div class="dropdown">
                     <div
                       class="btn bg-black dropdown-toggle d-flex align-items-center gap-3 rounded-pill"
@@ -181,7 +203,10 @@
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                     >
-                      <div class="ratio ratio-1x1" style="width: 20px">
+                      <div
+                        class="ratio ratio-1x1"
+                        style="width: 20px"
+                      >
                         <img
                           class="rounded-circle img-fluid"
                           src="https://www.clipartmax.com/png/middle/190-1902997_pippo-immagini-pippo.png"
@@ -193,9 +218,16 @@
                     </div>
 
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Profilo</a></li>
                       <li>
-                        <a id="notifications" class="dropdown-item" href="#"
+                        <a class="dropdown-item" href="#"
+                          >Profilo</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          id="notifications"
+                          class="dropdown-item"
+                          href="#"
                           >Notifiche</a
                         >
                       </li>
@@ -206,7 +238,9 @@
             </section>
             <div class="container" id="containerName"></div>
           </div>
-          <div class="container my-3 d-flex justify-content-start">
+          <div
+            class="container my-3 d-flex justify-content-start"
+          >
             <div class="row align-items-center">
               <div class="col">
                 <button
@@ -227,7 +261,9 @@
                 </button>
               </div>
               <div class="col">
-                <button class="btn btn-outline-light">FOLLOWING</button>
+                <button class="btn btn-outline-light">
+                  FOLLOWING
+                </button>
               </div>
               <div class="col">
                 <button class="btn">
@@ -236,17 +272,22 @@
               </div>
             </div>
           </div>
-          <div class="container d-flex justify-content-between">
-            <div>
+          <div
+            class="container d-flex justify-content-between"
+          >
+            <div class="w-75">
               <h3><strong>Popolari</strong></h3>
               <ol
                 class="list-group list-group-numbered align-items-center container-fluid"
                 id="listTrack"
               ></ol>
             </div>
+            <button class="btn">Mostra altro</button>
 
             <div>
-              <h3><strong>Brani che ti piacciono</strong></h3>
+              <h3>
+                <strong>Brani che ti piacciono</strong>
+              </h3>
 
               <div class="d-flex align-items-center">
                 <img
@@ -257,15 +298,21 @@
                 />
                 <div class="mx-3">
                   <p>
-                    <strong>Hai messo mi piace a 10 canzoni</strong>
+                    <strong
+                      >Hai messo mi piace a 10
+                      canzoni</strong
+                    >
                   </p>
                   <p>
-                    <strong>Dei <span id="nomeArtista"></span></strong>
+                    <strong
+                      >Dei <span id="nomeArtista"></span
+                    ></strong>
                   </p>
                 </div>
               </div>
             </div>
           </div>
+          <div></div>
         </div>
 
         <div id="rightBar" class="bg-black p-3">
@@ -274,7 +321,9 @@
               class="col-12 d-flex justify-content-between align-items-center text-body-secondary"
             >
               <div>
-                <p class="m-0 text-white">Attività ed amici</p>
+                <p class="m-0 text-white">
+                  Attività ed amici
+                </p>
               </div>
               <div>
                 <button
@@ -313,7 +362,9 @@
                   <p>4 ore</p>
                 </div>
                 <p>In Camera • Yumi Zouma</p>
-                <p><i class="bi bi-record-circle"></i> EP III</p>
+                <p>
+                  <i class="bi bi-record-circle"></i> EP III
+                </p>
               </div>
             </div>
             <div class="row mt-4 flex-nowrap">
@@ -336,7 +387,9 @@
                   <p>8 ore</p>
                 </div>
                 <p>In Camera • Yumi Zouma</p>
-                <p><i class="bi bi-record-circle"></i> EP III</p>
+                <p>
+                  <i class="bi bi-record-circle"></i> EP III
+                </p>
               </div>
             </div>
             <div class="row mt-4 flex-nowrap">
@@ -359,7 +412,9 @@
                   <p>3 giorni</p>
                 </div>
                 <p>In Camera • Yumi Zouma</p>
-                <p><i class="bi bi-record-circle"></i> EP III</p>
+                <p>
+                  <i class="bi bi-record-circle"></i> EP III
+                </p>
               </div>
             </div>
           </div>
@@ -384,8 +439,13 @@
         </div>
         <i class="bi bi-heart mx-3"></i>
       </div>
-      <div class="d-flex flex-column align-items-center h-100 mt-1">
-        <div class="d-flex align-items-center" style="margin-bottom: -15px">
+      <div
+        class="d-flex flex-column align-items-center h-100 mt-1"
+      >
+        <div
+          class="d-flex align-items-center"
+          style="margin-bottom: -15px"
+        >
           <button
             class="btn d-flex align-items-center justify-content-center mx-1 text-secondary"
           >
@@ -471,8 +531,14 @@
         </div>
         <div class="d-flex align-items-center w-100">
           <p class="m-3">0.52</p>
-          <div class="bg-secondary" style="width: 300px; height: 2px">
-            <div class="bg-white" style="width: 200px; height: 3px"></div>
+          <div
+            class="bg-secondary"
+            style="width: 300px; height: 2px"
+          >
+            <div
+              class="bg-white"
+              style="width: 200px; height: 3px"
+            ></div>
           </div>
           <p class="m-3">3.50</p>
         </div>

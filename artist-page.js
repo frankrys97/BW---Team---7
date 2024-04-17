@@ -98,8 +98,8 @@ const findArtist = () => {
       console.log(artist.picture_xl);
 
       const urlTralist = id
-        ? `https://striveschool-api.herokuapp.com/api/deezer/artist/${id}/top?limit=10`
-        : "https://striveschool-api.herokuapp.com/api/deezer/artist/412/top?limit=10";
+        ? `https://striveschool-api.herokuapp.com/api/deezer/artist/${id}/top?limit=5`
+        : "https://striveschool-api.herokuapp.com/api/deezer/artist/412/top?limit=5";
       fetch(urlTralist, {
         headers: {
           "X-RapidAPI-Key": myKeyMarina,
@@ -124,10 +124,10 @@ const findArtist = () => {
               "list-group-item",
               "d-flex",
               "justify-content-between",
-              "align-items-center",
+              "align-items-start",
               "border-0",
               "container-fluid",
-              "my-0",
+              "py-3",
               "h-auto"
             );
             listTrack.appendChild(elList);
