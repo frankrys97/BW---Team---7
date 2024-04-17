@@ -1,6 +1,6 @@
 const params = new URLSearchParams(window.location.search);
 const id = params.get("artistPage");
-const q = params.get("QueryPage");
+const q = params.get("queryPage");
 let URL =
   "https://deezerdevs-deezer.p.rapidapi.com/artist/412";
 if (id) {
