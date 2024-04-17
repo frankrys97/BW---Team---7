@@ -1,25 +1,17 @@
 const params = new URLSearchParams(window.location.search);
 const id = params.get("artistPage");
 const q = params.get("QueryPage");
-let URL =
-  "https://deezerdevs-deezer.p.rapidapi.com/album/6966025";
+let URL = "https://deezerdevs-deezer.p.rapidapi.com/album/6966025";
 if (id) {
-  URL =
-    "https://deezerdevs-deezer.p.rapidapi.com/album/" + id;
+  URL = "https://deezerdevs-deezer.p.rapidapi.com/album/" + id;
 } else if (q) {
-  URL =
-    "https://deezerdevs-deezer.p.rapidapi.com/search?q=" +
-    q;
+  URL = "https://deezerdevs-deezer.p.rapidapi.com/search?q=" + q;
 }
 
-const myKeyFrancesco =
-  "29cd1ae8c9msh33b66faee0e4446p1a9f60jsnb42fe6b9c1f5";
-const myKeyGiulio =
-  "d470d1fc32mshf7e1a1bbce29cf1p138398jsnd112e2807eda";
-const myKeyMarina =
-  "2e8b5073f4mshff8ce3300bd3f70p160efajsn3e779e2eda67";
-const myKeyCarlo =
-  "62aa31e1edmsh5b877960812af61p1c1b11jsncd4891d90e66";
+const myKeyFrancesco = "29cd1ae8c9msh33b66faee0e4446p1a9f60jsnb42fe6b9c1f5";
+const myKeyGiulio = "d470d1fc32mshf7e1a1bbce29cf1p138398jsnd112e2807eda";
+const myKeyMarina = "2e8b5073f4mshff8ce3300bd3f70p160efajsn3e779e2eda67";
+const myKeyCarlo = "62aa31e1edmsh5b877960812af61p1c1b11jsncd4891d90e66";
 
 const findAlbum = (url) => {
   fetch(url, {
@@ -50,9 +42,7 @@ const findAlbum = (url) => {
       console.log(trackCount);
       console.log(data);
 
-      const containerAlbum = document.getElementById(
-        "containerAlbum"
-      );
+      const containerAlbum = document.getElementById("containerAlbum");
       containerAlbum.innerHTML = `<div class="row">
   
       <div class="col-md-2 col-12 d-flex justify-content-center p-0 ">
@@ -93,9 +83,7 @@ const createTrackList = (urlTrack) => {
       }
     })
     .then((data) => {
-      const containerTrack = document.getElementById(
-        "containerTrack"
-      );
+      const containerTrack = document.getElementById("containerTrack");
       let htmlContent = "";
       let counter = 1;
 
@@ -185,8 +173,7 @@ const updateBackgroundGradient = (imageUrl) => {
     const colorThief = new ColorThief();
     try {
       const palette = colorThief.getPalette(img, 2);
-      const centerBar =
-        document.getElementById("centerBar");
+      const centerBar = document.getElementById("centerBar");
 
       centerBar.style.background = `linear-gradient(0deg, 
         rgba(0, 0, 0, 1) 0%, 
