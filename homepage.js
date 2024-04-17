@@ -56,11 +56,6 @@ notifications.addEventListener("click", () => {
   rightBar.classList.add("d-lg-block");
 });
 
-
-
-
-
-
 const volumeInterno = document.getElementById("volumeInterno");
 const volumeAlto = document.getElementById("volumeAlto");
 const volumeMedio = document.getElementById("VolumeMedio");
@@ -139,7 +134,7 @@ const findTrack = (url) => {
       console.log(playlist);
       if (
         !playlist.hasOwnProperty("error") &&
-        playlist.tracks.data.length > 0
+        playlist.tracks.data.length > 5
       ) {
         const imageTracks =
           playlist.tracks.data[
@@ -203,14 +198,12 @@ const findTrack = (url) => {
   </div>
 
     `;
- 
-    const hiddenButton = document.querySelector(".hiddenButton")
 
-    hiddenButton.addEventListener("click", () => {
-      annuncio.classList.remove("d-lg-flex")
-    });
+        const hiddenButton = document.querySelector(".hiddenButton");
 
-
+        hiddenButton.addEventListener("click", () => {
+          annuncio.classList.remove("d-lg-flex");
+        });
       } else {
         findTrack(
           `https://deezerdevs-deezer.p.rapidapi.com/playlist/${Math.floor(
@@ -244,7 +237,7 @@ const findPlaylistLeft = (url) => {
     .then((playlist) => {
       if (
         !playlist.hasOwnProperty("error") &&
-        playlist.tracks.data.length > 0
+        playlist.tracks.data.length > 5
       ) {
         const songs = playlist.tracks.data.slice(0, 10);
         console.log(songs);
@@ -303,12 +296,15 @@ const findAlbumCard = (url) => {
         const albumCard = document.getElementById("albums");
 
         const col = document.createElement("div");
-        col.classList.add("col");
+        col.classList.add("col", "albumCard");
 
         const card = document.createElement("div");
-        card.classList.add("card", "mb-4", "shadow-sm", "h-100");
+        card.classList.add("card", "mb-4", "shadow-sm");
+        card.style.minHeight = "200px";
+        card.style.maxWidth = "200px";
 
         card.innerHTML = `
+        
 
         <img
         src= ${imageAlbum}
@@ -362,11 +358,12 @@ const findAlbumCard2 = (url) => {
         const albumCard = document.getElementById("albums2");
 
         const col = document.createElement("div");
-        col.classList.add("col");
+        col.classList.add("col", "albumCard");
 
         const card = document.createElement("div");
-        card.classList.add("card", "mb-4", "shadow-sm", "h-100");
-
+        card.classList.add("card", "mb-4", "shadow-sm");
+        card.style.minHeight = "200px";
+        card.style.maxWidth = "200px";
         card.innerHTML = `
 
         <img
@@ -421,11 +418,12 @@ const findAlbumCard3 = (url) => {
         const albumCard = document.getElementById("albums3");
 
         const col = document.createElement("div");
-        col.classList.add("col");
+        col.classList.add("col", "albumCard");
 
         const card = document.createElement("div");
-        card.classList.add("card", "mb-4", "shadow-sm", "h-100");
-
+        card.classList.add("card", "mb-4", "shadow-sm");
+        card.style.minHeight = "200px";
+        card.style.maxWidth = "200px";
         card.innerHTML = `
 
         <img
@@ -468,7 +466,7 @@ window.onload = () => {
     )}`
   );
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 8; i++) {
     findAlbumCard(
       `https://deezerdevs-deezer.p.rapidapi.com/playlist/${Math.floor(
         Math.random() * 100000
