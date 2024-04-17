@@ -60,3 +60,22 @@ const notifications = document.getElementById("notifications");
 notifications.addEventListener("click", () => {
   rightBar.style.display = "block";
 });
+
+const randomColor = () => {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
+
+const assignRandomColor = () => {
+  const searchCard = document.querySelectorAll(".searchCard");
+
+  searchCard.forEach((card) => {
+    card.style.backgroundColor = randomColor();
+  });
+};
+
+assignRandomColor();

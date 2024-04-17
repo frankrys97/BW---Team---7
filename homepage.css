@@ -112,7 +112,7 @@ footer {
   height: 120px;
 }
 .card-img-top {
-  max-height: 120px; 
+  max-height: 120px;
   width: auto;
   object-fit: cover;
   aspect-ratio: 1 / 1;
@@ -121,4 +121,3 @@ footer {
   background-color: rgba(255, 255, 255, 0.1);
   transition: background-color 0.5s ease;
 }
-
