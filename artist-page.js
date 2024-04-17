@@ -4,11 +4,14 @@ const URL = id
   ? "https://deezerdevs-deezer.p.rapidapi.com/artist/" + id
   : "https://deezerdevs-deezer.p.rapidapi.com/artist/412";
 
-const volumeInterno = document.getElementById("volumeInterno");
+const volumeInterno =
+  document.getElementById("volumeInterno");
 const volumeAlto = document.getElementById("volumeAlto");
 const volumeMedio = document.getElementById("VolumeMedio");
 const volumeBasso = document.getElementById("volumeBasso");
-const volumeDisattivato = document.getElementById("volumeDisattivato");
+const volumeDisattivato = document.getElementById(
+  "volumeDisattivato"
+);
 const btnVolume = document.getElementById("btnVolume");
 // btnVolume.addEventListener("click", () => {
 //   volumeDisattivato.classList.remove("d-none");
@@ -26,7 +29,9 @@ volumeInterno.addEventListener("mousedown", (event) => {
 });
 
 const onMouseMove = (event) => {
-  let newWidth = event.clientX - volumeInterno.getBoundingClientRect().left;
+  let newWidth =
+    event.clientX -
+    volumeInterno.getBoundingClientRect().left;
   newWidth = Math.min(newWidth, 75);
   volumeInterno.style.width = newWidth + "px";
   if (newWidth >= 0 && newWidth < 30) {
@@ -55,7 +60,8 @@ const onMouseMove = (event) => {
 const onMouseUp = () => {
   document.removeEventListener("mousemove", onMouseMove);
 };
-const myKeyMarina = "2e8b5073f4mshff8ce3300bd3f70p160efajsn3e779e2eda67";
+const myKeyMarina =
+  "2e8b5073f4mshff8ce3300bd3f70p160efajsn3e779e2eda67";
 const findArtist = () => {
   fetch(URL, {
     headers: {
@@ -73,13 +79,17 @@ const findArtist = () => {
     })
     .then((artist) => {
       console.log(artist);
-      const imageCopertina = document.getElementById("imageCopertina");
+      const imageCopertina = document.getElementById(
+        "imageCopertina"
+      );
       imageCopertina.style = `background-image: url(${artist.picture_xl})`;
-      const containerTitle = document.getElementById("containerName");
+      const containerTitle =
+        document.getElementById("containerName");
       containerTitle.innerHTML = `<h3 class="mb-0">Artista verificato</h3>
 <h1 class="display-2 mb-0">${artist.name}</h1>
 <p class="mt-0 fs-5"><span>${artist.nb_fan}</span> ascoltatori mansili</p>`;
-      const nomeArtista = document.getElementById("nomeArtista");
+      const nomeArtista =
+        document.getElementById("nomeArtista");
 
       nomeArtista.innerText = artist.name;
 
@@ -98,12 +108,13 @@ const findArtist = () => {
       console.log(artist.picture_xl);
 
       const urlTralist = id
-        ? `https://striveschool-api.herokuapp.com/api/deezer/artist/${id}/top?limit=5`
-        : "https://striveschool-api.herokuapp.com/api/deezer/artist/412/top?limit=5";
+        ? `https://striveschool-api.herokuapp.com/api/deezer/artist/${id}/top?limit=10`
+        : "https://striveschool-api.herokuapp.com/api/deezer/artist/412/top?limit=10";
       fetch(urlTralist, {
         headers: {
           "X-RapidAPI-Key": myKeyMarina,
-          "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+          "X-RapidAPI-Host":
+            "deezerdevs-deezer.p.rapidapi.com",
           "Content-Type": "application/json",
         },
       })
@@ -118,7 +129,8 @@ const findArtist = () => {
           console.log(tracklist);
           tracklist.data.forEach((track) => {
             console.log(track.title_short);
-            const listTrack = document.getElementById("listTrack");
+            const listTrack =
+              document.getElementById("listTrack");
             const elList = document.createElement("li");
             elList.classList.add(
               "list-group-item",
@@ -131,30 +143,52 @@ const findArtist = () => {
               "h-auto"
             );
             listTrack.appendChild(elList);
-            const containerImage = document.createElement("div");
-            containerImage.classList.add("mx-3", "h-25", "w-25");
-            const imageTrack = document.createElement("img");
+            const containerImage =
+              document.createElement("div");
+            containerImage.classList.add(
+              "mx-3",
+              "h-25",
+              "w-25"
+            );
+            const imageTrack =
+              document.createElement("img");
             imageTrack.classList.add("img-fluid");
             containerImage.appendChild(imageTrack);
-            imageTrack.src = track.contributors[0].picture_small;
-            const titleTrackContainer = document.createElement("div");
-            titleTrackContainer.classList.add("ms-2", "me-auto");
+            imageTrack.src =
+              track.contributors[0].picture_small;
+            const titleTrackContainer =
+              document.createElement("div");
+            titleTrackContainer.classList.add(
+              "ms-2",
+              "me-auto"
+            );
             const titleTrack = document.createElement("p");
             titleTrack.classList.add("fw-bold");
             titleTrack.innerText = track.title_short;
             titleTrackContainer.appendChild(titleTrack);
-            const rankTrackContainer = document.createElement("div");
-            rankTrackContainer.classList.add("ms-2", "me-auto");
+            const rankTrackContainer =
+              document.createElement("div");
+            rankTrackContainer.classList.add(
+              "ms-2",
+              "me-auto"
+            );
             const rankTrack = document.createElement("p");
             rankTrack.classList.add("fw-bold");
             rankTrack.innerText = track.rank;
             rankTrackContainer.appendChild(rankTrack);
-            const durationTrackContainer = document.createElement("div");
-            durationTrackContainer.classList.add("ms-2", "me-auto");
-            const durationTrack = document.createElement("p");
+            const durationTrackContainer =
+              document.createElement("div");
+            durationTrackContainer.classList.add(
+              "ms-2",
+              "me-auto"
+            );
+            const durationTrack =
+              document.createElement("p");
             durationTrack.classList.add("fw-bold");
             durationTrack.innerText = track.duration;
-            durationTrackContainer.appendChild(durationTrack);
+            durationTrackContainer.appendChild(
+              durationTrack
+            );
             elList.append(
               containerImage,
               titleTrackContainer,
