@@ -21,10 +21,16 @@ const volumeDisattivato = document.getElementById(
   "volumeDisattivato"
 );
 const btnVolume = document.getElementById("btnVolume");
+btnVolume.addEventListener("click", () => {
+  volumeDisattivato.classList.remove("d-none");
+  volumeAlto.classList.add("d-none");
+  volumeBasso.classList.add("d-none");
+  volumeMedio.classList.add("d-none");
+});
 // btnVolume.addEventListener("click", () => {
-//   volumeDisattivato.classList.remove("d-none");
+//   volumeDisattivato.classList.add("d-none");
 //   volumeAlto.classList.add("d-none");
-//   volumeBasso.classList.add("d-none");
+//   volumeBasso.classList.remove("d-none");
 //   volumeMedio.classList.add("d-none");
 // });
 
@@ -111,6 +117,16 @@ const findArtist = () => {
         document.getElementById("numeroFan");
       numeroFan.innerText = artist.nb_fan;
       imageCopertina.style = `background-image: url(${artist.picture_xl})`;
+      const imageArtist =
+        document.getElementById("imgArtist");
+      const imageLike = document.getElementById(
+        "imageBraniLike"
+      );
+      const nomeArtista2 =
+        document.getElementById("nomeArtista2");
+      nomeArtista2.innerText = artist.name;
+      imageLike.src = artist.picture_small;
+      imageArtist.src = artist.picture_small;
       const containerTitle =
         document.getElementById("containerName");
 
@@ -161,7 +177,8 @@ const findArtist = () => {
               "border-0",
               "container-fluid",
               "py-3",
-              "h-auto"
+              "h-auto",
+              "w-100"
             );
             listTrack.appendChild(elList);
             const containerImage =
