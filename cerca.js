@@ -128,9 +128,31 @@ document.addEventListener("mouseup", () => {
   console.log(isResizing);
 });
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const query = document.getElementById("searchBar").value;
-  window.location.href = `./artist.html?q=${query}`;
+const selectType = document.getElementById("selectType");
+const searchButton = document.getElementById("searchButton");
+const searchBar = document.getElementById("searchBar");
+const searchForm = document.getElementById("searchForm");
+
+selectType.addEventListener("change", () => {
+  const selectedValue = selectType.value;
+  if (selectedValue !== "") {
+    searchButton.disabled = false;
+    searchBar.disabled = false;
+  } else {
+    searchButton.disabled = true;
+    searchBar.disabled = true;
+  }
 });
+
+searchForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const query = searchBar.value;
+  const selectedType = selectType.value;
+  if (selectedType === "artist") {
+    window.location.href = `./artist-page.html?q=${query}`;
+  } else if (selectedType === "album") {
+    window.location.href = `./album.html?q=${query}`;
+  }
+});
+
 
