@@ -10,6 +10,7 @@ if (id) {
   URL =
     "https://deezerdevs-deezer.p.rapidapi.com/search?q=" +
     q;
+  console.log(q);
 }
 
 const volumeInterno =
