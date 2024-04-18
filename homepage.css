@@ -33,7 +33,7 @@ body {
 
 #centerBar {
   width: 100%;
-  height: 90vh;
+  height: 100vh;
   small {
     font-size: 10px;
   }
@@ -53,7 +53,7 @@ body {
 #rightBar {
   min-width: 240px;
   background-color: aqua;
-  height: 90vh;
+  height: 100vh;
 }
 
 ul,
@@ -65,7 +65,7 @@ a {
 #dragHandle {
   width: 5px;
   background-color: black;
-  height: 90vh;
+  height: 100vh;
 }
 
 #dragHandle:hover {
@@ -92,6 +92,7 @@ a {
   }
 }
 footer {
+  background-color: rgba(0, 0, 0, 0.7);
   height: 10vh;
   p {
     margin-bottom: 0;
@@ -101,7 +102,11 @@ footer {
     fill: currentColor;
     width: 20px;
   }
-=========
+}
+#menuBar{
+  background-color: rgba(0, 0, 0, 0.7);
+}
+=====
 .card {
   height: 120px;
 }
