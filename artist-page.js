@@ -181,7 +181,7 @@ const findArtist = () => {
           tracklist.data.forEach((track) => {
             console.log(track);
             const preview = new Audio(track.preview);
-            console.log(preview.controls);
+            console.log(preview.currentTime);
 
             preview.volume = 0.25;
             const elList = document.createElement("li");
