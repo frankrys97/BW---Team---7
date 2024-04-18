@@ -143,10 +143,19 @@ const findArtist = () => {
 
       console.dir(imageCopertina);
       console.log(artist.picture_xl);
+      const btnMostraAltro = document.getElementById(
+        "btnMostraAltro"
+      );
+
+      let numberTrack = "5";
+      btnMostraAltro.addEventListener("click", () => {
+        btnMostraAltro.innerText = "Nascondi";
+      });
 
       const urlTralist = id
         ? `https://striveschool-api.herokuapp.com/api/deezer/artist/${id}/top?limit=10`
-        : "https://striveschool-api.herokuapp.com/api/deezer/artist/412/top?limit=10";
+        : `https://striveschool-api.herokuapp.com/api/deezer/artist/412/top?limit=10`;
+
       fetch(urlTralist, {
         headers: {
           "X-RapidAPI-Key": myKeyMarina,
@@ -164,103 +173,158 @@ const findArtist = () => {
         })
         .then((tracklist) => {
           console.log(tracklist);
+
           const containerTrack = document.getElementById(
             "containerTrack"
           );
-          let counter = 1;
-          let htmlContent = "";
+
           tracklist.data.forEach((track) => {
-            htmlContent += `
-            
-            
-            <div class="row px-2 me-4 d-none d-md-flex">
-        <div class="col-6">
-          <div class="d-flex align-items-center">
-            <div class="p-2">
-              <span class="song-number text-body-tertiary d-none d-md-block">${counter}</span>
-            </div>
-            <div class="p-2 d-flex align-items-center">
-            <img src="${track.contributors[0].picture_small}" alt="" class= "mx-3">
-              <div class="song-info">
-                <div class="song-text"><h5>${track.title}</h5></div>
-              </div>
-            </div>
-          </div>
-        </div> `;
+            console.log(track.title_short);
+            const elList = document.createElement("li");
+            elList.classList.add(
+              "list-group-item",
+              "d-flex",
+              "justify-content-between",
+              "align-items-center",
+              "border-0",
+              "container-fluid",
+              "py-3",
+              "h-auto",
+              "w-100",
+              "list-group-item-action"
+            );
+            containerTrack.appendChild(elList);
+            const containerImage =
+              document.createElement("button");
+            containerImage.classList.add(
+              "mx-3",
+              "h-25",
+              "w-25",
+              "btn"
+            );
+            const imageTrack =
+              document.createElement("img");
+            imageTrack.classList.add("img-fluid");
+            containerImage.appendChild(imageTrack);
+            imageTrack.src =
+              track.contributors[0].picture_small;
+            const titleTrackContainer =
+              document.createElement("div");
+            titleTrackContainer.classList.add("mx-3");
+            const titleTrack = document.createElement("p");
+            titleTrack.classList.add("fw-bold");
+            titleTrack.innerText = track.title_short;
+            titleTrackContainer.appendChild(titleTrack);
+            const rankTrack2 = document.createElement("p");
+            titleTrackContainer.appendChild(rankTrack2);
+            rankTrack2.innerText = track.rank;
+            rankTrack2.classList.add("d-lg-none");
+            titleTrackContainer.classList.add(
+              "d-flex",
+              "flex-column",
+              "align-items-center"
+            );
+            const rankTrackContainer =
+              document.createElement("div");
+            rankTrackContainer.classList.add(
+              "mx-3",
+              "d-none",
+              "d-lg-block"
+            );
+            const btnSettings =
+              document.createElement("button");
+            btnSettings.innerHTML = `<i class="bi bi-three-dots-vertical"></i>`;
+            btnSettings.classList.add("btn", "d-lg-none");
+            const rankTrack = document.createElement("p");
+            rankTrack.classList.add("fw-bold");
+            rankTrack.innerText = track.rank;
+            rankTrackContainer.appendChild(rankTrack);
+            const durationTrackContainer =
+              document.createElement("div");
+            durationTrackContainer.classList.add(
+              "mx-3",
+              "d-none",
+              "d-lg-block"
+            );
+            const durationTrack =
+              document.createElement("p");
+            durationTrack.classList.add("fw-bold");
+            durationTrack.innerText = track.duration;
+            durationTrackContainer.appendChild(
+              durationTrack
+            );
+            elList.append(
+              containerImage,
+              titleTrackContainer,
+              rankTrackContainer,
+              durationTrackContainer,
+              btnSettings
+            );
+            const album = document.getElementById("album");
+            const col = document.createElement("div");
+            album.appendChild(col);
+            col.classList.add("col", "gy-3");
+            const card = document.createElement("div");
+            card.classList.add("card");
+            card.style = "height: 350px";
+            const img = document.createElement("img");
+            img.src = track.album.cover_medium;
+            const cardBody = document.createElement("div");
+            cardBody.classList.add("card-body");
+            const cardTitle = document.createElement("div");
+            const ancora = document.createElement("a");
+            const titleCard = document.createElement("h5");
+            titleCard.innerText = track.album.title;
+            ancora.appendChild(titleCard);
+            ancora.classList.add(
+              "link-underline",
+              "link-underline-opacity-0"
+            );
+            ancora.href = `./album.html?albumPage=${track.album.id}`;
+
+            cardTitle.appendChild(ancora);
+            cardBody.appendChild(cardTitle);
+            card.append(img, cardBody);
+            col.appendChild(card);
+
+            const collab =
+              document.getElementById("collab");
+            track.contributors.forEach((collaboration) => {
+              const col2 = document.createElement("div");
+              collab.appendChild(col2);
+              col2.classList.add("col", "gy-3");
+              const card2 = document.createElement("div");
+              card2.classList.add("card");
+              card2.style = "height: 300px";
+              const img2 = document.createElement("img");
+              img2.src = collaboration.picture_medium;
+              img2.classList.add("rounded-circle");
+              const cardBody2 =
+                document.createElement("div");
+              cardBody2.classList.add("card-body");
+              const cardTitle2 =
+                document.createElement("div");
+              const ancora = document.createElement("a");
+              const titleCard2 =
+                document.createElement("h5");
+              ancora.appendChild(titleCard2);
+              ancora.classList.add(
+                "link-underline",
+                "link-underline-opacity-0"
+              );
+              ancora.href = `./artist-page.html?artistPage=${collaboration.id}`;
+              titleCard2.innerText = collaboration.name;
+              cardTitle2.appendChild(ancora);
+              cardBody2.appendChild(cardTitle2);
+              card2.append(img2, cardBody2);
+              col2.appendChild(card2);
+            });
           });
-          containerTrack.inn = htmlContent;
         });
 
-      // tracklist.data.forEach((track) => {
-      //   console.log(track.title_short);
-      //   const listTrack =
-      //     document.getElementById("listTrack");
-      //   const elList = document.createElement("li");
-      //   elList.classList.add(
-      //     "list-group-item",
-      //     "d-flex",
-      //     "justify-content-between",
-      //     "align-items-start",
-      //     "border-0",
-      //     "container-fluid",
-      //     "py-3",
-      //     "h-auto",
-      //     "w-100"
-      //   );
-      //   listTrack.appendChild(elList);
-      //   const containerImage =
-      //     document.createElement("div");
-      //   containerImage.classList.add(
-      //     "mx-3",
-      //     "h-25",
-      //     "w-25"
-      //   );
-      //   const imageTrack =
-      //     document.createElement("img");
-      //   imageTrack.classList.add("img-fluid");
-      //   containerImage.appendChild(imageTrack);
-      //   imageTrack.src =
-      //     track.contributors[0].picture_small;
-      //   const titleTrackContainer =
-      //     document.createElement("div");
-      //   titleTrackContainer.classList.add(
-      //     "ms-2",
-      //     "me-auto"
-      //   );
-      //   const titleTrack = document.createElement("p");
-      //   titleTrack.classList.add("fw-bold");
-      //   titleTrack.innerText = track.title_short;
-      //   titleTrackContainer.appendChild(titleTrack);
-      //   const rankTrackContainer =
-      //     document.createElement("div");
-      //   rankTrackContainer.classList.add(
-      //     "ms-2",
-      //     "me-auto"
-      //   );
-      //   const rankTrack = document.createElement("p");
-      //   rankTrack.classList.add("fw-bold");
-      //   rankTrack.innerText = track.rank;
-      //   rankTrackContainer.appendChild(rankTrack);
-      //   const durationTrackContainer =
-      //     document.createElement("div");
-      //   durationTrackContainer.classList.add(
-      //     "ms-2",
-      //     "me-auto"
-      //   );
-      //   const durationTrack =
-      //     document.createElement("p");
-      //   durationTrack.classList.add("fw-bold");
-      //   durationTrack.innerText = track.duration;
-      //   durationTrackContainer.appendChild(
-      //     durationTrack
-      //   );
-      //   elList.append(
-      //     containerImage,
-      //     titleTrackContainer,
-      //     rankTrackContainer,
-      //     durationTrackContainer
-      //   );
-      // });
+      // mostraAltro.addEventListener('click', ()=>{
+
+      // })
     })
     .catch((error) => {
       console.log(error);
