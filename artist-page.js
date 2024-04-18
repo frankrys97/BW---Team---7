@@ -75,22 +75,6 @@ const onMouseUp = () => {
   document.removeEventListener("mousemove", onMouseMove);
 };
 // fino a qui la funzione del volume e del movimento della pagina
-
-const closeBarRight = () => {
-  const closeBar = document.getElementById("closeBtn");
-  const rightBar = document.getElementById("rightBar");
-  const openBar = document.getElementById("notifications");
-  const centerBar = document.getElementById("centerBar");
-  console.log(closeBar);
-  closeBar.addEventListener("click", () => {
-    rightBar.classList.add("d-none");
-  });
-  openBar.addEventListener("click", () => {
-    rightBar.classList.remove("d-none");
-  });
-};
-closeBarRight();
-
 const myKeyMarina =
   "2e8b5073f4mshff8ce3300bd3f70p160efajsn3e779e2eda67";
 const findArtist = () => {
