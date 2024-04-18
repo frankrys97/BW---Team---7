@@ -181,6 +181,7 @@ const findArtist = () => {
           tracklist.data.forEach((track) => {
             console.log(track);
             const preview = new Audio(track.preview);
+            console.log(preview.controls);
 
             preview.volume = 0.25;
             const elList = document.createElement("li");
@@ -210,7 +211,7 @@ const findArtist = () => {
             const playButton =
               document.getElementById("playButton");
             playButton.addEventListener("click", () => {
-              preview.paused();
+              preview.pause;
             });
             containerImage.addEventListener("click", () => {
               preview.play();
@@ -226,6 +227,7 @@ const findArtist = () => {
               songPlayer.innerText = track.title_short;
               artistPlayer.innerText = track.artist.name;
             });
+
             const imageTrack =
               document.createElement("img");
 
