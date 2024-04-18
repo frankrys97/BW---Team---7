@@ -181,9 +181,8 @@ const findArtist = () => {
           tracklist.data.forEach((track) => {
             console.log(track);
             const preview = new Audio(track.preview);
-            console.log(preview.currentTime);
-
             preview.volume = 0.25;
+            preview.pause();
             const elList = document.createElement("li");
             elList.classList.add(
               "list-group-item",
@@ -210,9 +209,7 @@ const findArtist = () => {
             console.log(track.artist.name);
             const playButton =
               document.getElementById("playButton");
-            playButton.addEventListener("click", () => {
-              preview.pause;
-            });
+
             containerImage.addEventListener("click", () => {
               preview.play();
 
@@ -348,10 +345,6 @@ const findArtist = () => {
             });
           });
         });
-
-      // mostraAltro.addEventListener('click', ()=>{
-
-      // })
     })
     .catch((error) => {
       console.log(error);
