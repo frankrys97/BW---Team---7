@@ -179,7 +179,10 @@ const findArtist = () => {
           );
 
           tracklist.data.forEach((track) => {
-            console.log(track.title_short);
+            console.log(track);
+            const preview = new Audio(track.preview);
+
+            preview.volume = 0.25;
             const elList = document.createElement("li");
             elList.classList.add(
               "list-group-item",
@@ -202,6 +205,27 @@ const findArtist = () => {
               "w-25",
               "btn"
             );
+            containerImage.appendChild(preview);
+            console.log(track.artist.name);
+            const playButton =
+              document.getElementById("playButton");
+            playButton.addEventListener("click", () => {
+              preview.paused();
+            });
+            containerImage.addEventListener("click", () => {
+              preview.play();
+
+              const imagePlayer =
+                document.getElementById("imgPlayer");
+              const songPlayer =
+                document.getElementById("songPlayer");
+              const artistPlayer =
+                document.getElementById("artistPlayers");
+              imagePlayer.src =
+                track.contributors[0].picture_small;
+              songPlayer.innerText = track.title_short;
+              artistPlayer.innerText = track.artist.name;
+            });
             const imageTrack =
               document.createElement("img");
 
