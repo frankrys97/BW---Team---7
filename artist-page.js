@@ -164,77 +164,103 @@ const findArtist = () => {
         })
         .then((tracklist) => {
           console.log(tracklist);
+          const containerTrack = document.getElementById(
+            "containerTrack"
+          );
+          let counter = 1;
+          let htmlContent = "";
           tracklist.data.forEach((track) => {
-            console.log(track.title_short);
-            const listTrack =
-              document.getElementById("listTrack");
-            const elList = document.createElement("li");
-            elList.classList.add(
-              "list-group-item",
-              "d-flex",
-              "justify-content-between",
-              "align-items-start",
-              "border-0",
-              "container-fluid",
-              "py-3",
-              "h-auto",
-              "w-100"
-            );
-            listTrack.appendChild(elList);
-            const containerImage =
-              document.createElement("div");
-            containerImage.classList.add(
-              "mx-3",
-              "h-25",
-              "w-25"
-            );
-            const imageTrack =
-              document.createElement("img");
-            imageTrack.classList.add("img-fluid");
-            containerImage.appendChild(imageTrack);
-            imageTrack.src =
-              track.contributors[0].picture_small;
-            const titleTrackContainer =
-              document.createElement("div");
-            titleTrackContainer.classList.add(
-              "ms-2",
-              "me-auto"
-            );
-            const titleTrack = document.createElement("p");
-            titleTrack.classList.add("fw-bold");
-            titleTrack.innerText = track.title_short;
-            titleTrackContainer.appendChild(titleTrack);
-            const rankTrackContainer =
-              document.createElement("div");
-            rankTrackContainer.classList.add(
-              "ms-2",
-              "me-auto"
-            );
-            const rankTrack = document.createElement("p");
-            rankTrack.classList.add("fw-bold");
-            rankTrack.innerText = track.rank;
-            rankTrackContainer.appendChild(rankTrack);
-            const durationTrackContainer =
-              document.createElement("div");
-            durationTrackContainer.classList.add(
-              "ms-2",
-              "me-auto"
-            );
-            const durationTrack =
-              document.createElement("p");
-            durationTrack.classList.add("fw-bold");
-            durationTrack.innerText = track.duration;
-            durationTrackContainer.appendChild(
-              durationTrack
-            );
-            elList.append(
-              containerImage,
-              titleTrackContainer,
-              rankTrackContainer,
-              durationTrackContainer
-            );
+            htmlContent += `
+            
+            
+            <div class="row px-2 me-4 d-none d-md-flex">
+        <div class="col-6">
+          <div class="d-flex align-items-center">
+            <div class="p-2">
+              <span class="song-number text-body-tertiary d-none d-md-block">${counter}</span>
+            </div>
+            <div class="p-2 d-flex align-items-center">
+            <img src="${track.contributors[0].picture_small}" alt="" class= "mx-3">
+              <div class="song-info">
+                <div class="song-text"><h5>${track.title}</h5></div>
+              </div>
+            </div>
+          </div>
+        </div> `;
           });
+          containerTrack.inn = htmlContent;
         });
+
+      // tracklist.data.forEach((track) => {
+      //   console.log(track.title_short);
+      //   const listTrack =
+      //     document.getElementById("listTrack");
+      //   const elList = document.createElement("li");
+      //   elList.classList.add(
+      //     "list-group-item",
+      //     "d-flex",
+      //     "justify-content-between",
+      //     "align-items-start",
+      //     "border-0",
+      //     "container-fluid",
+      //     "py-3",
+      //     "h-auto",
+      //     "w-100"
+      //   );
+      //   listTrack.appendChild(elList);
+      //   const containerImage =
+      //     document.createElement("div");
+      //   containerImage.classList.add(
+      //     "mx-3",
+      //     "h-25",
+      //     "w-25"
+      //   );
+      //   const imageTrack =
+      //     document.createElement("img");
+      //   imageTrack.classList.add("img-fluid");
+      //   containerImage.appendChild(imageTrack);
+      //   imageTrack.src =
+      //     track.contributors[0].picture_small;
+      //   const titleTrackContainer =
+      //     document.createElement("div");
+      //   titleTrackContainer.classList.add(
+      //     "ms-2",
+      //     "me-auto"
+      //   );
+      //   const titleTrack = document.createElement("p");
+      //   titleTrack.classList.add("fw-bold");
+      //   titleTrack.innerText = track.title_short;
+      //   titleTrackContainer.appendChild(titleTrack);
+      //   const rankTrackContainer =
+      //     document.createElement("div");
+      //   rankTrackContainer.classList.add(
+      //     "ms-2",
+      //     "me-auto"
+      //   );
+      //   const rankTrack = document.createElement("p");
+      //   rankTrack.classList.add("fw-bold");
+      //   rankTrack.innerText = track.rank;
+      //   rankTrackContainer.appendChild(rankTrack);
+      //   const durationTrackContainer =
+      //     document.createElement("div");
+      //   durationTrackContainer.classList.add(
+      //     "ms-2",
+      //     "me-auto"
+      //   );
+      //   const durationTrack =
+      //     document.createElement("p");
+      //   durationTrack.classList.add("fw-bold");
+      //   durationTrack.innerText = track.duration;
+      //   durationTrackContainer.appendChild(
+      //     durationTrack
+      //   );
+      //   elList.append(
+      //     containerImage,
+      //     titleTrackContainer,
+      //     rankTrackContainer,
+      //     durationTrackContainer
+      //   );
+      // });
     })
     .catch((error) => {
       console.log(error);
