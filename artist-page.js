@@ -457,6 +457,11 @@ notifications.addEventListener("click", () => {
 });
 
 window.onload = () => {
+  findPlaylistLeft(
+    `https://deezerdevs-deezer.p.rapidapi.com/playlist/${Math.floor(
+      Math.random() * 100000
+    )}`
+  );
   fetch(URL, {
     headers: {
       "X-RapidAPI-Key": myKeyMarina,
