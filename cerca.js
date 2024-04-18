@@ -149,9 +149,12 @@ searchForm.addEventListener("submit", (event) => {
   const query = searchBar.value;
   const selectedType = selectType.value;
   if (selectedType === "artist") {
-    window.location.href = `./artist-page.html?q=${query}`;
+    console.log("ciao");
+
+    window.location.href = `artist-page.html?q=${query}`;
+
   } else if (selectedType === "album") {
-    window.location.href = `./album.html?q=${query}`;
+    window.location.href = `album.html?query=${query}`;
   }
 });
 
