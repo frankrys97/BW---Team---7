@@ -204,6 +204,7 @@ const findArtist = () => {
             );
             const imageTrack =
               document.createElement("img");
+
             imageTrack.classList.add("img-fluid");
             containerImage.appendChild(imageTrack);
             imageTrack.src =
