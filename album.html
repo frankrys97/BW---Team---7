@@ -22,12 +22,13 @@
       <div id="home">
         <div
           id="leftBar"
-          class="p-3 bg-black text-body-secondary d-none d-lg-block"
+          class="p-3 bg-black text-body-secondary d-none d-md-block"
         >
           <div class="d-flex flex-column align-items-start gap-2">
-            <a href="#">
+            <a href="./homepage.html">
               <img src="./assets/imgs/logo.svg" alt="" style="width: 70px" />
             </a>
+
             <ul class="nav nav-pills flex-column mb-auto gap-2 mt-3">
               <li class="nav-item active-sidebar">
                 <a
@@ -53,7 +54,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="#"
+                  href="./cerca.html"
                   class="d-flex gap-3 align-items-center text-decoration-none"
                   aria-current="page"
                   ><svg
@@ -140,7 +141,10 @@
             </ul>
           </div>
           <hr />
-          <div data-bs-spy="scroll"></div>
+          <div
+            class="d-flex flex-column align-items-start gap-2 h-50 overflow-auto"
+            id="playlistContainer"
+          ></div>
         </div>
         <div id="dragHandle"></div>
         <div id="centerBar" class="bg-secondary-subtle" data-bs-spy="scroll">
@@ -305,7 +309,9 @@
             <div
               class="col-12 d-flex justify-content-between align-items-center text-body-secondary"
             >
-              <p class="m-0 text-white">Attività ed amici</p>
+              <div>
+                <p class="m-0 text-white">Attività ed amici</p>
+              </div>
               <div>
                 <button
                   class="btn btn-link text-body-secondary"
@@ -322,7 +328,6 @@
               </div>
             </div>
           </div>
-
           <div class="container">
             <div class="row mt-4 flex-nowrap">
               <div class="col-3">
@@ -347,7 +352,6 @@
                 <p><i class="bi bi-record-circle"></i> EP III</p>
               </div>
             </div>
-
             <div class="row mt-4 flex-nowrap">
               <div class="col-3">
                 <div class="ratio ratio-1x1">
@@ -371,7 +375,6 @@
                 <p><i class="bi bi-record-circle"></i> EP III</p>
               </div>
             </div>
-
             <div class="row mt-4 flex-nowrap">
               <div class="col-3">
                 <div class="ratio ratio-1x1">
