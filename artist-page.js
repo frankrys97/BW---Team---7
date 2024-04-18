@@ -193,10 +193,14 @@ const findArtist = () => {
             containerImage.appendChild(preview);
             console.log(track.artist.name);
             const playButton =
-              document.getElementById("playButton");
+              document.getElementById("pauseButton");
 
             containerImage.addEventListener("click", () => {
-              preview.play();
+              if (preview.paused) {
+                preview.play();
+              } else {
+                preview.pause();
+              }
 
               const imagePlayer =
                 document.getElementById("imgPlayer");
@@ -209,6 +213,10 @@ const findArtist = () => {
               songPlayer.innerText = track.title_short;
               artistPlayer.innerText = track.artist.name;
             });
+            playButton.addEventListener("click", () => {
+              preview.pause();
+            });
+            console.log(playButton);
 
             const imageTrack =
               document.createElement("img");
