@@ -15,13 +15,6 @@
 body {
   height: 100vh;
   font-family: "CircularStd", sans-serif;
-  overflow: hidden;
-}
-
-#home {
-  display: flex;
-  justify-content: center;
-  flex-wrap: nowrap;
 }
 
 #leftBar {
@@ -51,7 +44,14 @@ body {
   cursor: pointer;
 }
 
+#home {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
 #rightBar {
+  min-width: 240px;
   height: 100vh;
 }
 
@@ -91,7 +91,6 @@ a {
   }
 }
 footer {
-  background-color: rgba(0, 0, 0, 0.7);
   height: 10vh;
   p {
     margin-bottom: 0;
@@ -108,16 +107,10 @@ footer {
   }
 }
 
-.card {
-  height: 120px;
+#colorCard a {
+  text-decoration: none;
 }
-.card-img-top {
-  max-height: 120px; /* Altezza massima per le immagini */
-  width: auto;
-  object-fit: cover;
-  aspect-ratio: 1 / 1;
+#menuBar{
+  background-color: rgba(0, 0, 0, 0.7);
 }
-.card.custom-bg:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  transition: background-color 0.5s ease;
-}
+

@@ -27,12 +27,12 @@ btnVolume.addEventListener("click", () => {
   volumeBasso.classList.add("d-none");
   volumeMedio.classList.add("d-none");
 });
-// btnVolume.addEventListener("click", () => {
-//   volumeDisattivato.classList.add("d-none");
-//   volumeAlto.classList.add("d-none");
-//   volumeBasso.classList.remove("d-none");
-//   volumeMedio.classList.add("d-none");
-// });
+btnVolume.addEventListener("click", () => {
+  volumeDisattivato.classList.add("d-none");
+  volumeAlto.classList.add("d-none");
+  volumeBasso.classList.remove("d-none");
+  volumeMedio.classList.add("d-none");
+});
 
 volumeInterno.addEventListener("mousedown", (event) => {
   event.preventDefault();
@@ -335,6 +335,62 @@ const findArtist = () => {
     });
 };
 findArtist();
+const findPlaylistLeft = (url) => {
+  fetch(url, {
+    headers: {
+      "X-RapidAPI-Key": myKeyMarina,
+      "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Request failed!");
+      }
+    })
+    .then((playlist) => {
+      if (
+        !playlist.hasOwnProperty("error") &&
+        playlist.tracks.data.length > 5
+      ) {
+        const songs = playlist.tracks.data.slice(0, 10);
+        console.log(songs);
+        for (let i = 0; i < 4; i++) {
+          randomizeSongs.push(...shuffleArray(songs));
+        }
+
+        const playlistContainer = document.getElementById(
+          "playlistContainer"
+        );
+        randomizeSongs.forEach((song) => {
+          const title = song.title;
+          const titleElement = document.createElement("a");
+          titleElement.classList.add(
+            "text-decoration-none"
+          );
+          titleElement.href = `#`;
+          titleElement.innerHTML = title;
+          playlistContainer.appendChild(titleElement);
+        });
+      } else {
+        findPlaylistLeft(
+          `https://deezerdevs-deezer.p.rapidapi.com/playlist/${Math.floor(
+            Math.random() * 100000
+          )}`
+        );
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+const shuffleArray = (array) => {
+  return array.sort(() => Math.random() - 0.5);
+};
+
 window.onload = () => {
   fetch(URL, {
     headers: {
@@ -352,4 +408,10 @@ window.onload = () => {
     })
 
     .catch((err) => console.log(err));
+
+  findPlaylistLeft(
+    `https://deezerdevs-deezer.p.rapidapi.com/playlist/${Math.floor(
+      Math.random() * 100000
+    )}`
+  );
 };
