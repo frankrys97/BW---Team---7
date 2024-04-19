@@ -13,8 +13,26 @@ if (id) {
   console.log(q);
 }
 
-let lastPlayerPreview = null;
+const preview = new Audio();
+
 // variabile mi registra la track premuta in precedenza
+
+const playButton = document.getElementById("pauseButton");
+playButton.addEventListener("click", (event) => {
+  const playBtn = document.getElementById("buttonPlay");
+  playBtn.classList.add("d-none");
+  const pauseBtn = document.getElementById("buttonPause");
+  pauseBtn.classList.remove("d-none");
+  pauseBtn.style.width = "20px";
+  // preview.pause();
+  console.log(preview.paused);
+  if (preview.paused) {
+    preview.play();
+  } else {
+    preview.pause();
+  }
+});
+
 const playerBar = (audioVolume) => {
   const volumeInterno =
     document.getElementById("volumeInterno");
@@ -85,6 +103,8 @@ const playerBar = (audioVolume) => {
     document.removeEventListener("mousemove", onMouseMove);
   };
 };
+playerBar(preview);
+// playPauseFunc(preview);
 
 // fino a qui la funzione del volume e del movimento della pagina
 const myKeyMarina =
@@ -168,8 +188,6 @@ const findArtist = () => {
 
           tracklist.data.forEach((track) => {
             console.log(track);
-            const preview = new Audio(track.preview);
-            volumeFunction(preview);
 
             // per implementare nell'album devi creare questo
             const elList = document.createElement("li");
@@ -205,14 +223,8 @@ const findArtist = () => {
                 preview.paused ||
                 preview.src !== preview.src
               ) {
-                if (
-                  lastPlayerPreview &&
-                  lastPlayerPreview !== preview
-                ) {
-                  lastPlayerPreview.pause();
-                }
+                preview.src = track.preview;
                 preview.play();
-                lastPlayerPreview = preview;
               } else {
                 preview.pause();
               }
@@ -228,13 +240,7 @@ const findArtist = () => {
               songPlayer.innerText = track.title_short;
               artistPlayer.innerText = track.artist.name;
             });
-            playButton.addEventListener("click", () => {
-              if (preview.paused) {
-                preview.play();
-              } else {
-                preview.pause();
-              }
-            });
+
             console.log(playButton);
 
             const imageTrack =
