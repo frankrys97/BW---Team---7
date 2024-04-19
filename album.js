@@ -336,3 +336,14 @@ const notifications = document.getElementById("notifications");
 notifications.addEventListener("click", () => {
   rightBar.classList.add("d-lg-block");
 });
+
+const backButton = document.getElementById("backButton");
+
+backButton.addEventListener("click", function () {
+  window.history.back();
+});
+const forwardButton = document.getElementById("forwardButton");
+
+forwardButton.addEventListener("click", function () {
+  window.history.forward();
+});
