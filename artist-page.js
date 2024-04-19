@@ -18,7 +18,7 @@ const preview = new Audio();
 // variabile mi registra la track premuta in precedenza
 
 const playButton = document.getElementById("pauseButton");
-playButton.addEventListener("click", (event) => {
+playButton.addEventListener("click", () => {
   const playBtn = document.getElementById("buttonPlay");
   const pauseBtn = document.getElementById("buttonPause");
 
@@ -26,11 +26,11 @@ playButton.addEventListener("click", (event) => {
   console.log(preview.paused);
   if (preview.paused) {
     preview.play();
-    playBtn.classList.remove("d-none");
-    pauseBtn.classList.add("d-none");
-  } else {
     playBtn.classList.add("d-none");
     pauseBtn.classList.remove("d-none");
+  } else {
+    playBtn.classList.remove("d-none");
+    pauseBtn.classList.add("d-none");
     preview.pause();
   }
 });
@@ -106,7 +106,6 @@ const playerBar = (audioVolume) => {
   };
 };
 playerBar(preview);
-// playPauseFunc(preview);
 
 // fino a qui la funzione del volume e del movimento della pagina
 const myKeyMarina =
@@ -241,6 +240,10 @@ const findArtist = () => {
                 track.contributors[0].picture_small;
               songPlayer.innerText = track.title_short;
               artistPlayer.innerText = track.artist.name;
+              const durationTrack =
+                document.getElementById("duration");
+
+              durationTrack.innerText = track.duration;
             });
 
             console.log(playButton);
