@@ -15,7 +15,7 @@ if (id) {
 
 let lastPlayerPreview = null;
 // variabile mi registra la track premuta in precedenza
-const playerBar = (urlTrack) => {
+const playerBar = (audioVolume) => {
   const volumeInterno =
     document.getElementById("volumeInterno");
   const volumeAlto = document.getElementById("volumeAlto");
@@ -59,21 +59,25 @@ const playerBar = (urlTrack) => {
       volumeAlto.classList.add("d-none");
       volumeMedio.classList.add("d-none");
       volumeBasso.classList.remove("d-none");
+      audioVolume.volume = 0.25;
     } else if (newWidth > 30 && newWidth < 50) {
       volumeBasso.classList.add("d-none");
       volumeDisattivato.classList.add("d-none");
       volumeAlto.classList.add("d-none");
       volumeMedio.classList.remove("d-none");
+      audioVolume.volume = 0.5;
     } else if (newWidth < 0) {
       volumeDisattivato.classList.remove("d-none");
       volumeAlto.classList.add("d-none");
       volumeBasso.classList.add("d-none");
       volumeMedio.classList.add("d-none");
+      audioVolume.volume = 0;
     } else {
       volumeMedio.classList.add("d-none");
       volumeBasso.classList.add("d-none");
       volumeDisattivato.classList.add("d-none");
       volumeAlto.classList.remove("d-none");
+      audioVolume.volume = 1;
     }
   };
 
@@ -165,8 +169,8 @@ const findArtist = () => {
           tracklist.data.forEach((track) => {
             console.log(track);
             const preview = new Audio(track.preview);
-            preview.volume = 0.25;
-            preview.pause();
+            volumeFunction(preview);
+
             // per implementare nell'album devi creare questo
             const elList = document.createElement("li");
             elList.classList.add(
@@ -225,7 +229,11 @@ const findArtist = () => {
               artistPlayer.innerText = track.artist.name;
             });
             playButton.addEventListener("click", () => {
-              preview.pause();
+              if (preview.paused) {
+                preview.play();
+              } else {
+                preview.pause();
+              }
             });
             console.log(playButton);
 
