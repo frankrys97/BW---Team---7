@@ -94,6 +94,7 @@ const createTrackList = (urlTrack) => {
         // const trackPosition = track.track_position;
         const trackStreaming = track.rank;
         const artistId = track.artist.id;
+        const previewSong = track.preview;
 
         htmlContent += `
         <div class="row px-2 me-4 d-none d-md-flex">
@@ -104,7 +105,7 @@ const createTrackList = (urlTrack) => {
             </div>
             <div class="p-2">
               <div class="song-info">
-                <div class="song-text"><h5>${trackTitle}</h5></div>
+                <div class="song-text"><h5  data-preview="${previewSong}">${trackTitle}</h5></div>
                 <div class="song-artist text-body-tertiary">
                 <a href="./artist-page.html?artistPage=${artistId}"><p>${trackArtistName}</p></a>                 
                 </div>
@@ -129,7 +130,7 @@ const createTrackList = (urlTrack) => {
           <div class="p-2">
             <div class="song-info">
               <div class="song-text">
-                <h5 class="mb-0 fs-5">${trackTitle}</h5>
+                <h5 class="mb-0 fs-5" data-preview="${previewSong}">${trackTitle}</h5>
               </div>
               <div class="song-artist text-body-tertiary">
                 <p>${trackArtistName}</p>
@@ -149,6 +150,20 @@ const createTrackList = (urlTrack) => {
         counter++;
       });
       containerTrack.innerHTML = htmlContent;
+      // function playPreview(url) {
+      //   if (window.currentlyPlaying) {
+      //     window.currentlyPlaying.pause();
+      //   }
+      //   const audioPlayer = new Audio(url);
+      //   audioPlayer.play();
+      //   window.currentlyPlaying = audioPlayer;
+      // }
+      // document.querySelectorAll(".song-text h5").forEach((song) => {
+      //   song.addEventListener("click", function () {
+      //     const previewUrl = this.getAttribute("data-preview");
+      //     playPreview(previewUrl);
+      //   });
+      // });
     })
     .catch((error) => {
       console.error("Error fetching track list:", error);
