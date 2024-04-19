@@ -161,11 +161,12 @@ searchForm.addEventListener("submit", (event) => {
 
 const myKeyFrancesco = "29cd1ae8c9msh33b66faee0e4446p1a9f60jsnb42fe6b9c1f5";
 
-const randomizeSongs = [];
-
 const shuffleArray = (array) => {
   return array.sort(() => Math.random() - 0.5);
 };
+
+const randomizeSongs = [];
+let currentAudio = null;
 
 const findPlaylistLeft = (url) => {
   fetch(url, {
@@ -179,7 +180,7 @@ const findPlaylistLeft = (url) => {
       if (response.ok) {
         return response.json();
       } else {
-        throw new Error("Request failed!");
+        throw new Error("Richiesta fallita!");
       }
     })
     .then((playlist) => {
@@ -196,10 +197,25 @@ const findPlaylistLeft = (url) => {
         const playlistContainer = document.getElementById("playlistContainer");
         randomizeSongs.forEach((song) => {
           const title = song.title;
+          const audioUrl = song.preview;
           const titleElement = document.createElement("a");
           titleElement.classList.add("text-decoration-none");
-          titleElement.href = `#`;
+          titleElement.href = "#";
           titleElement.innerHTML = title;
+          titleElement.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            if (currentAudio && currentAudio.src === audioUrl) {
+              currentAudio.pause();
+              currentAudio = null;
+            } else {
+              if (currentAudio) {
+                currentAudio.pause();
+              }
+              currentAudio = new Audio(audioUrl);
+              currentAudio.play();
+            }
+          });
           playlistContainer.appendChild(titleElement);
         });
       } else {
