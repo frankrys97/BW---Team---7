@@ -20,15 +20,17 @@ const preview = new Audio();
 const playButton = document.getElementById("pauseButton");
 playButton.addEventListener("click", (event) => {
   const playBtn = document.getElementById("buttonPlay");
-  playBtn.classList.add("d-none");
   const pauseBtn = document.getElementById("buttonPause");
-  pauseBtn.classList.remove("d-none");
-  pauseBtn.style.width = "20px";
+
   // preview.pause();
   console.log(preview.paused);
   if (preview.paused) {
     preview.play();
+    playBtn.classList.remove("d-none");
+    pauseBtn.classList.add("d-none");
   } else {
+    playBtn.classList.add("d-none");
+    pauseBtn.classList.remove("d-none");
     preview.pause();
   }
 });
