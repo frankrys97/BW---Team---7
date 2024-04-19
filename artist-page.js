@@ -14,6 +14,7 @@ if (id) {
 }
 
 let lastPlayerPreview = null;
+// variabile mi registra la track premuta in precedenza
 const playerBar = (urlTrack) => {
   const volumeInterno =
     document.getElementById("volumeInterno");
@@ -210,6 +211,7 @@ const findArtist = () => {
               } else {
                 preview.pause();
               }
+              // condizione che prevede lo stop della canzone precedentemente cliccata
               const imagePlayer =
                 document.getElementById("imgPlayer");
               const songPlayer =

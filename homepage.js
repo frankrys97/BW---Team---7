@@ -300,6 +300,7 @@ const findPlaylistLeft = (url) => {
                 if (currentAudio) {
                   currentAudio.pause();
                 }
+                // qui
                 currentAudio = new Audio(audioUrl);
                 volumeFunction(currentAudio);
                 currentAudio.play();
