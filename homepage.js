@@ -91,13 +91,11 @@ const myKeyMarina =
   "2e8b5073f4mshff8ce3300bd3f70p160efajsn3e779e2eda67";
 const myKeyCarlo =
   "62aa31e1edmsh5b877960812af61p1c1b11jsncd4891d90e66";
-const myKeyFrancesco2 =
-  "79ef909c12msh0b593d0b951ee76p1bb51ajsn722c7e7bd3a0";
 
 const findTrack = (url) => {
   fetch(url, {
     headers: {
-      "X-RapidAPI-Key": myKeyFrancesco2,
+      "X-RapidAPI-Key": myKeyFrancesco,
       "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
       "Content-Type": "application/json",
     },
@@ -115,15 +113,24 @@ const findTrack = (url) => {
         !playlist.hasOwnProperty("error") &&
         playlist.tracks.data.length > 5
       ) {
-        const randomIndex = Math.floor(
-          Math.random() * playlist.tracks.data.length
-        );
         const imageTracks =
-          playlist.tracks.data[randomIndex].album.cover_big;
+          playlist.tracks.data[
+            Math.floor(
+              Math.random() * playlist.tracks.data.length
+            )
+          ].album.cover_big;
         const artistName =
-          playlist.tracks.data[randomIndex].artist.name;
+          playlist.tracks.data[
+            Math.floor(
+              Math.random() * playlist.tracks.data.length
+            )
+          ].artist.name;
         const albumTitle =
-          playlist.tracks.data[randomIndex].album.title;
+          playlist.tracks.data[
+            Math.floor(
+              Math.random() * playlist.tracks.data.length
+            )
+          ].album.title;
 
         const annuncio =
           document.getElementById("annuncio");
@@ -250,6 +257,24 @@ const volumeFunction = (audioVolume) => {
     document.addEventListener("mouseup", onMouseUp);
   });
 };
+const playStop = (traccia) => {
+  const playButton = document.getElementById("pauseButton");
+  playButton.addEventListener("click", () => {
+    const playBtn = document.getElementById("buttonPlay");
+    const pauseBtn = document.getElementById("buttonPause");
+    // preview.pause();
+    console.log(traccia.paused);
+    if (traccia.paused) {
+      traccia.play();
+      playBtn.classList.add("d-none");
+      pauseBtn.classList.remove("d-none");
+    } else {
+      playBtn.classList.remove("d-none");
+      pauseBtn.classList.add("d-none");
+      traccia.pause();
+    }
+  });
+};
 
 const randomizeSongs = [];
 let currentAudio = null;
@@ -311,7 +336,9 @@ const findPlaylistLeft = (url) => {
                 // qui
                 currentAudio = new Audio(audioUrl);
                 volumeFunction(currentAudio);
+                playStop(currentAudio);
                 currentAudio.play();
+
                 const imageTrack =
                   document.getElementById("imageTrack");
                 const titleTrack =

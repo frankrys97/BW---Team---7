@@ -1,8 +1,11 @@
-const volumeInterno = document.getElementById("volumeInterno");
+const volumeInterno =
+  document.getElementById("volumeInterno");
 const volumeAlto = document.getElementById("volumeAlto");
 const volumeMedio = document.getElementById("VolumeMedio");
 const volumeBasso = document.getElementById("volumeBasso");
-const volumeDisattivato = document.getElementById("volumeDisattivato");
+const volumeDisattivato = document.getElementById(
+  "volumeDisattivato"
+);
 const btnVolume = document.getElementById("btnVolume");
 // btnVolume.addEventListener("click", () => {
 //   volumeDisattivato.classList.remove("d-none");
@@ -20,7 +23,9 @@ volumeInterno.addEventListener("mousedown", (event) => {
 });
 
 const onMouseMove = (event) => {
-  let newWidth = event.clientX - volumeInterno.getBoundingClientRect().left;
+  let newWidth =
+    event.clientX -
+    volumeInterno.getBoundingClientRect().left;
   newWidth = Math.min(newWidth, 75);
   volumeInterno.style.width = newWidth + "px";
   if (newWidth >= 0 && newWidth < 30) {
@@ -52,13 +57,16 @@ const onMouseUp = () => {
 
 const leftBar = document.getElementById("leftBar");
 const rightBar = document.getElementById("rightBar");
-const closeRightBar = document.querySelector(".closeRightBar");
+const closeRightBar = document.querySelector(
+  ".closeRightBar"
+);
 
 closeRightBar.addEventListener("click", () => {
   rightBar.classList.remove("d-lg-block");
 });
 
-const notifications = document.getElementById("notifications");
+const notifications =
+  document.getElementById("notifications");
 
 notifications.addEventListener("click", () => {
   rightBar.classList.add("d-lg-block");
@@ -74,7 +82,8 @@ const randomColor = () => {
 };
 
 const assignRandomColor = () => {
-  const searchCard = document.querySelectorAll(".searchCard");
+  const searchCard =
+    document.querySelectorAll(".searchCard");
 
   searchCard.forEach((card) => {
     card.style.backgroundColor = randomColor();
@@ -107,10 +116,12 @@ document.addEventListener("mousemove", (e) => {
   if (newWidth >= minWidth && newWidth <= maxLeftBarWidth) {
     leftBar.style.width = `${newWidth}px`;
 
-    const homeWidth = document.getElementById("home").offsetWidth;
+    const homeWidth =
+      document.getElementById("home").offsetWidth;
     const centerBar = document.getElementById("centerBar");
     const rightBar = document.getElementById("rightBar");
-    const centerBarWidth = homeWidth - newWidth - rightBar.offsetWidth;
+    const centerBarWidth =
+      homeWidth - newWidth - rightBar.offsetWidth;
     centerBar.style.width = `${centerBarWidth}px`;
 
     if (newWidth >= rightTreshhold) {
@@ -129,7 +140,8 @@ document.addEventListener("mouseup", () => {
 });
 
 const selectType = document.getElementById("selectType");
-const searchButton = document.getElementById("searchButton");
+const searchButton =
+  document.getElementById("searchButton");
 const searchBar = document.getElementById("searchBar");
 const searchForm = document.getElementById("searchForm");
 
@@ -149,12 +161,15 @@ searchForm.addEventListener("submit", (event) => {
   const query = searchBar.value;
   const selectedType = selectType.value;
   if (selectedType === "artist") {
-    const url = "https://deezerdevs-deezer.p.rapidapi.com/search?q=" + query;
+    const url =
+      "https://deezerdevs-deezer.p.rapidapi.com/search?q=" +
+      query;
 
     fetch(url, {
       headers: {
         "X-RapidAPI-Key": myKeyFrancesco,
-        "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+        "X-RapidAPI-Host":
+          "deezerdevs-deezer.p.rapidapi.com",
         "Content-Type": "application/json",
       },
     })
@@ -177,12 +192,71 @@ searchForm.addEventListener("submit", (event) => {
   }
 });
 
-const myKeyFrancesco = "29cd1ae8c9msh33b66faee0e4446p1a9f60jsnb42fe6b9c1f5";
+const myKeyFrancesco =
+  "29cd1ae8c9msh33b66faee0e4446p1a9f60jsnb42fe6b9c1f5";
 
 const shuffleArray = (array) => {
   return array.sort(() => Math.random() - 0.5);
 };
+const volumeFunction = (audioVolume) => {
+  const onMouseMove = (event) => {
+    let newWidth =
+      event.clientX -
+      volumeInterno.getBoundingClientRect().left;
+    newWidth = Math.min(newWidth, 75);
+    volumeInterno.style.width = newWidth + "px";
+    if (newWidth >= 0 && newWidth < 30) {
+      volumeDisattivato.classList.add("d-none");
+      volumeAlto.classList.add("d-none");
+      volumeMedio.classList.add("d-none");
+      volumeBasso.classList.remove("d-none");
+      audioVolume.volume = 0.25;
+    } else if (newWidth > 30 && newWidth < 50) {
+      volumeBasso.classList.add("d-none");
+      volumeDisattivato.classList.add("d-none");
+      volumeAlto.classList.add("d-none");
+      volumeMedio.classList.remove("d-none");
+      audioVolume.volume = 0.5;
+    } else if (newWidth < 0) {
+      volumeDisattivato.classList.remove("d-none");
+      volumeAlto.classList.add("d-none");
+      volumeBasso.classList.add("d-none");
+      volumeMedio.classList.add("d-none");
+      audioVolume.volume = 0;
+    } else {
+      volumeMedio.classList.add("d-none");
+      volumeBasso.classList.add("d-none");
+      volumeDisattivato.classList.add("d-none");
+      volumeAlto.classList.remove("d-none");
+      audioVolume.volume = 1;
+    }
+  };
+  volumeInterno.addEventListener("mousedown", (event) => {
+    event.preventDefault();
 
+    document.addEventListener("mousemove", onMouseMove);
+
+    document.addEventListener("mouseup", onMouseUp);
+  });
+};
+const playStop = (traccia) => {
+  const playButton = document.getElementById("pauseButton");
+  playButton.addEventListener("click", () => {
+    const playBtn = document.getElementById("buttonPlay");
+    const pauseBtn = document.getElementById("buttonPause");
+    // preview.pause();
+    console.log(traccia.paused);
+    if (traccia.paused) {
+      traccia.play();
+      playBtn.classList.add("d-none");
+      pauseBtn.classList.remove("d-none");
+    } else {
+      playBtn.classList.remove("d-none");
+      pauseBtn.classList.add("d-none");
+      traccia.pause();
+    }
+  });
+};
 const randomizeSongs = [];
 let currentAudio = null;
 
@@ -212,28 +286,40 @@ const findPlaylistLeft = (url) => {
           randomizeSongs.push(...shuffleArray(songs));
         }
 
-        const playlistContainer = document.getElementById("playlistContainer");
+        const playlistContainer = document.getElementById(
+          "playlistContainer"
+        );
         randomizeSongs.forEach((song) => {
           const title = song.title;
           const audioUrl = song.preview;
           const titleElement = document.createElement("a");
-          titleElement.classList.add("text-decoration-none");
+          titleElement.classList.add(
+            "text-decoration-none"
+          );
           titleElement.href = "#";
           titleElement.innerHTML = title;
-          titleElement.addEventListener("click", function (event) {
-            event.preventDefault();
+          titleElement.addEventListener(
+            "click",
+            function (event) {
+              event.preventDefault();
 
-            if (currentAudio && currentAudio.src === audioUrl) {
-              currentAudio.pause();
-              currentAudio = null;
-            } else {
-              if (currentAudio) {
+              if (
+                currentAudio &&
+                currentAudio.src === audioUrl
+              ) {
                 currentAudio.pause();
+                currentAudio = null;
+              } else {
+                if (currentAudio) {
+                  currentAudio.pause();
+                }
+                currentAudio = new Audio(audioUrl);
+                volumeFunction(currentAudio);
+                playStop(currentAudio);
+                currentAudio.play();
               }
-              currentAudio = new Audio(audioUrl);
-              currentAudio.play();
             }
-          });
+          );
           playlistContainer.appendChild(titleElement);
         });
       } else {
@@ -259,7 +345,8 @@ window.onload = () => {
 backButton.addEventListener("click", function () {
   window.history.back();
 });
-const forwardButton = document.getElementById("forwardButton");
+const forwardButton =
+  document.getElementById("forwardButton");
 
 forwardButton.addEventListener("click", function () {
   window.history.forward();
