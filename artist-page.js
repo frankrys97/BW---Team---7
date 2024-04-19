@@ -167,6 +167,7 @@ const findArtist = () => {
             const preview = new Audio(track.preview);
             preview.volume = 0.25;
             preview.pause();
+            // per implementare nell'album devi creare questo
             const elList = document.createElement("li");
             elList.classList.add(
               "list-group-item",
