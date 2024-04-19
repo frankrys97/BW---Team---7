@@ -152,19 +152,32 @@ const createTrackList = (urlTrack) => {
         counter++;
       });
       containerTrack.innerHTML = htmlContent;
-
       const trackElements = document.querySelectorAll(".song-info");
       trackElements.forEach((trackElement, index) => {
         trackElement.addEventListener("click", () => {
-          if (currentPreview) {
-            currentPreview.pause();
-          }
-
+          // Per l'elemento audio cliccato mi vado a creare un oggetto di tipo audio andandomi a prendere
+          // l'url dall'oggetto data
           const preview = new Audio(data.data[index].preview);
 
-          preview.play();
+          // Qui ho impostato una condizione globale dove vado a verificare se esiste la currentPreview e se il suo
+          // valore corrisponde all'elemento audio cliccato, in caso affermativo, controlla se il currentPreview è in pausa o in riproduzione
+          // altrimenti vado nell'else dove dico che se la traccia cliccata è diversa dalla traccia corrente,
+          //interrompi la traccia corrente e avvia la nuova traccia
 
-          currentPreview = preview;
+          if (currentPreview && currentPreview.src === preview.src) {
+            if (currentPreview.paused) {
+              currentPreview.play();
+            } else {
+              currentPreview.pause();
+            }
+          } else {
+            if (currentPreview) {
+              currentPreview.pause();
+            }
+
+            preview.play();
+            currentPreview = preview;
+          }
         });
       });
     })
