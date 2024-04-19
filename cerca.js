@@ -256,3 +256,11 @@ window.onload = () => {
     )}`
   );
 };
+backButton.addEventListener("click", function () {
+  window.history.back();
+});
+const forwardButton = document.getElementById("forwardButton");
+
+forwardButton.addEventListener("click", function () {
+  window.history.forward();
+});
