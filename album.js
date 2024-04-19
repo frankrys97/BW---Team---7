@@ -68,6 +68,8 @@ const findAlbum = (url) => {
     });
 };
 
+let currentPreview = null;
+
 const createTrackList = (urlTrack) => {
   fetch(urlTrack, {
     headers: {
@@ -150,6 +152,21 @@ const createTrackList = (urlTrack) => {
         counter++;
       });
       containerTrack.innerHTML = htmlContent;
+
+      const trackElements = document.querySelectorAll(".song-info");
+      trackElements.forEach((trackElement, index) => {
+        trackElement.addEventListener("click", () => {
+          if (currentPreview) {
+            currentPreview.pause();
+          }
+
+          const preview = new Audio(data.data[index].preview);
+
+          preview.play();
+
+          currentPreview = preview;
+        });
+      });
     })
     .catch((error) => {
       console.error("Error fetching track list:", error);
