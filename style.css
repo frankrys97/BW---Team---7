@@ -53,6 +53,8 @@ body {
 
 #rightBar {
   height: 100vh;
+  min-width: 240px;
+
 }
 
 ul,
