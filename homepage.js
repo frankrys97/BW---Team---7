@@ -23,10 +23,12 @@ document.addEventListener("mousemove", (e) => {
   if (newWidth >= minWidth && newWidth <= maxLeftBarWidth) {
     leftBar.style.width = `${newWidth}px`;
 
-    const homeWidth = document.getElementById("home").offsetWidth;
+    const homeWidth =
+      document.getElementById("home").offsetWidth;
     const centerBar = document.getElementById("centerBar");
     const rightBar = document.getElementById("rightBar");
-    const centerBarWidth = homeWidth - newWidth - rightBar.offsetWidth;
+    const centerBarWidth =
+      homeWidth - newWidth - rightBar.offsetWidth;
     centerBar.style.width = `${centerBarWidth}px`;
 
     if (newWidth >= rightTreshhold) {
@@ -44,23 +46,29 @@ document.addEventListener("mouseup", () => {
   console.log(isResizing);
 });
 
-const closeRightBar = document.querySelector(".closeRightBar");
+const closeRightBar = document.querySelector(
+  ".closeRightBar"
+);
 
 closeRightBar.addEventListener("click", () => {
   rightBar.classList.remove("d-lg-block");
 });
 
-const notifications = document.getElementById("notifications");
+const notifications =
+  document.getElementById("notifications");
 
 notifications.addEventListener("click", () => {
   rightBar.classList.add("d-lg-block");
 });
 
-const volumeInterno = document.getElementById("volumeInterno");
+const volumeInterno =
+  document.getElementById("volumeInterno");
 const volumeAlto = document.getElementById("volumeAlto");
 const volumeMedio = document.getElementById("VolumeMedio");
 const volumeBasso = document.getElementById("volumeBasso");
-const volumeDisattivato = document.getElementById("volumeDisattivato");
+const volumeDisattivato = document.getElementById(
+  "volumeDisattivato"
+);
 const btnVolume = document.getElementById("btnVolume");
 // btnVolume.addEventListener("click", () => {
 //   volumeDisattivato.classList.remove("d-none");
@@ -69,52 +77,22 @@ const btnVolume = document.getElementById("btnVolume");
 //   volumeMedio.classList.add("d-none");
 // });
 
-volumeInterno.addEventListener("mousedown", (event) => {
-  event.preventDefault();
-
-  document.addEventListener("mousemove", onMouseMove);
-
-  document.addEventListener("mouseup", onMouseUp);
-});
-
-const onMouseMove = (event) => {
-  let newWidth = event.clientX - volumeInterno.getBoundingClientRect().left;
-  newWidth = Math.min(newWidth, 75);
-  volumeInterno.style.width = newWidth + "px";
-  if (newWidth >= 0 && newWidth < 30) {
-    volumeDisattivato.classList.add("d-none");
-    volumeAlto.classList.add("d-none");
-    volumeMedio.classList.add("d-none");
-    volumeBasso.classList.remove("d-none");
-  } else if (newWidth > 30 && newWidth < 50) {
-    volumeBasso.classList.add("d-none");
-    volumeDisattivato.classList.add("d-none");
-    volumeAlto.classList.add("d-none");
-    volumeMedio.classList.remove("d-none");
-  } else if (newWidth < 0) {
-    volumeDisattivato.classList.remove("d-none");
-    volumeAlto.classList.add("d-none");
-    volumeBasso.classList.add("d-none");
-    volumeMedio.classList.add("d-none");
-  } else {
-    volumeMedio.classList.add("d-none");
-    volumeBasso.classList.add("d-none");
-    volumeDisattivato.classList.add("d-none");
-    volumeAlto.classList.remove("d-none");
-  }
-};
-
 const onMouseUp = () => {
   document.removeEventListener("mousemove", onMouseMove);
 };
 
 // Popolazione album
 
-const myKeyFrancesco = "29cd1ae8c9msh33b66faee0e4446p1a9f60jsnb42fe6b9c1f5";
-const myKeyGiulio = "d470d1fc32mshf7e1a1bbce29cf1p138398jsnd112e2807eda";
-const myKeyMarina = "2e8b5073f4mshff8ce3300bd3f70p160efajsn3e779e2eda67";
-const myKeyCarlo = "62aa31e1edmsh5b877960812af61p1c1b11jsncd4891d90e66";
-const myKeyFrancesco2 = "79ef909c12msh0b593d0b951ee76p1bb51ajsn722c7e7bd3a0"
+const myKeyFrancesco =
+  "29cd1ae8c9msh33b66faee0e4446p1a9f60jsnb42fe6b9c1f5";
+const myKeyGiulio =
+  "d470d1fc32mshf7e1a1bbce29cf1p138398jsnd112e2807eda";
+const myKeyMarina =
+  "2e8b5073f4mshff8ce3300bd3f70p160efajsn3e779e2eda67";
+const myKeyCarlo =
+  "62aa31e1edmsh5b877960812af61p1c1b11jsncd4891d90e66";
+const myKeyFrancesco2 =
+  "79ef909c12msh0b593d0b951ee76p1bb51ajsn722c7e7bd3a0";
 
 const findTrack = (url) => {
   fetch(url, {
@@ -140,11 +118,15 @@ const findTrack = (url) => {
         const randomIndex = Math.floor(
           Math.random() * playlist.tracks.data.length
         );
-        const imageTracks = playlist.tracks.data[randomIndex].album.cover_big;
-        const artistName = playlist.tracks.data[randomIndex].artist.name;
-        const albumTitle = playlist.tracks.data[randomIndex].album.title;
+        const imageTracks =
+          playlist.tracks.data[randomIndex].album.cover_big;
+        const artistName =
+          playlist.tracks.data[randomIndex].artist.name;
+        const albumTitle =
+          playlist.tracks.data[randomIndex].album.title;
 
-        const annuncio = document.getElementById("annuncio");
+        const annuncio =
+          document.getElementById("annuncio");
 
         annuncio.innerHTML = `
 
@@ -193,11 +175,13 @@ const findTrack = (url) => {
   </div>
 
     `;
-    const preview = new Audio(playlist.tracks.data[randomIndex].preview);
+        const preview = new Audio(
+          playlist.tracks.data[randomIndex].preview
+        );
 
-        const playButton = document.querySelector(".playButton");
+        const playButton =
+          document.querySelector(".playButton");
         playButton.addEventListener("click", () => {
-
           if (preview.paused) {
             preview.play();
             playButton.innerHTML = "Pause";
@@ -207,7 +191,8 @@ const findTrack = (url) => {
           }
         });
 
-        const hiddenButton = document.querySelector(".hiddenButton");
+        const hiddenButton =
+          document.querySelector(".hiddenButton");
 
         hiddenButton.addEventListener("click", () => {
           annuncio.classList.remove("d-lg-flex");
@@ -224,6 +209,47 @@ const findTrack = (url) => {
       console.log(error);
     });
 };
+const volumeFunction = (audioVolume) => {
+  const onMouseMove = (event) => {
+    let newWidth =
+      event.clientX -
+      volumeInterno.getBoundingClientRect().left;
+    newWidth = Math.min(newWidth, 75);
+    volumeInterno.style.width = newWidth + "px";
+    if (newWidth >= 0 && newWidth < 30) {
+      volumeDisattivato.classList.add("d-none");
+      volumeAlto.classList.add("d-none");
+      volumeMedio.classList.add("d-none");
+      volumeBasso.classList.remove("d-none");
+      audioVolume.volume = 0.25;
+    } else if (newWidth > 30 && newWidth < 50) {
+      volumeBasso.classList.add("d-none");
+      volumeDisattivato.classList.add("d-none");
+      volumeAlto.classList.add("d-none");
+      volumeMedio.classList.remove("d-none");
+      audioVolume.volume = 0.5;
+    } else if (newWidth < 0) {
+      volumeDisattivato.classList.remove("d-none");
+      volumeAlto.classList.add("d-none");
+      volumeBasso.classList.add("d-none");
+      volumeMedio.classList.add("d-none");
+      audioVolume.volume = 0;
+    } else {
+      volumeMedio.classList.add("d-none");
+      volumeBasso.classList.add("d-none");
+      volumeDisattivato.classList.add("d-none");
+      volumeAlto.classList.remove("d-none");
+      audioVolume.volume = 1;
+    }
+  };
+  volumeInterno.addEventListener("mousedown", (event) => {
+    event.preventDefault();
+
+    document.addEventListener("mousemove", onMouseMove);
+
+    document.addEventListener("mouseup", onMouseUp);
+  });
+};
 
 const randomizeSongs = [];
 let currentAudio = null;
@@ -231,7 +257,7 @@ let currentAudio = null;
 const findPlaylistLeft = (url) => {
   fetch(url, {
     headers: {
-      "X-RapidAPI-Key": myKeyFrancesco,
+      "X-RapidAPI-Key": myKeyMarina,
       "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
       "Content-Type": "application/json",
     },
@@ -254,28 +280,53 @@ const findPlaylistLeft = (url) => {
           randomizeSongs.push(...shuffleArray(songs));
         }
 
-        const playlistContainer = document.getElementById("playlistContainer");
+        const playlistContainer = document.getElementById(
+          "playlistContainer"
+        );
         randomizeSongs.forEach((song) => {
+          console.log(song);
           const title = song.title;
           const audioUrl = song.preview;
           const titleElement = document.createElement("a");
-          titleElement.classList.add("text-decoration-none");
+          titleElement.classList.add(
+            "text-decoration-none"
+          );
           titleElement.href = "#";
           titleElement.innerHTML = title;
-          titleElement.addEventListener("click", function (event) {
-            event.preventDefault();
+          titleElement.addEventListener(
+            "click",
+            function (event) {
+              event.preventDefault();
 
-            if (currentAudio && currentAudio.src === audioUrl) {
-              currentAudio.pause();
-              currentAudio = null;
-            } else {
-              if (currentAudio) {
+              if (
+                currentAudio &&
+                currentAudio.src === audioUrl
+              ) {
                 currentAudio.pause();
+                currentAudio = null;
+              } else {
+                if (currentAudio) {
+                  currentAudio.pause();
+                }
+                // qui
+                currentAudio = new Audio(audioUrl);
+                volumeFunction(currentAudio);
+                currentAudio.play();
+                const imageTrack =
+                  document.getElementById("imageTrack");
+                const titleTrack =
+                  document.getElementById("songTrack");
+                const artistTrack =
+                  document.getElementById("artistTrack");
+                imageTrack.src = song.album.cover_small;
+                titleTrack.innerText = song.title_short;
+                artistTrack.innerText = song.artist.name;
+                const linkArtist =
+                  document.getElementById("linkArtist");
+                linkArtist.href = `./artist-page.html?artistPage=${song.artist.id}`;
               }
-              currentAudio = new Audio(audioUrl);
-              currentAudio.play();
             }
-          });
+          );
           playlistContainer.appendChild(titleElement);
         });
       } else {
@@ -378,7 +429,8 @@ const findAlbumCard2 = (url) => {
         const albumTitle = album.title;
         const albumCreator = album.creator.name;
 
-        const albumCard = document.getElementById("albums2");
+        const albumCard =
+          document.getElementById("albums2");
 
         const col = document.createElement("div");
         col.classList.add("col", "albumCard");
@@ -438,7 +490,8 @@ const findAlbumCard3 = (url) => {
         const albumTitle = album.title;
         const albumCreator = album.creator.name;
 
-        const albumCard = document.getElementById("albums3");
+        const albumCard =
+          document.getElementById("albums3");
 
         const col = document.createElement("div");
         col.classList.add("col", "albumCard");
@@ -510,7 +563,8 @@ window.onload = () => {
 backButton.addEventListener("click", function () {
   window.history.back();
 });
-const forwardButton = document.getElementById("forwardButton");
+const forwardButton =
+  document.getElementById("forwardButton");
 
 forwardButton.addEventListener("click", function () {
   window.history.forward();

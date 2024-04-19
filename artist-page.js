@@ -1,73 +1,115 @@
 const params = new URLSearchParams(window.location.search);
 const id = params.get("artistPage");
 const q = params.get("queryPage");
-let URL = "https://deezerdevs-deezer.p.rapidapi.com/artist/412";
+let URL =
+  "https://deezerdevs-deezer.p.rapidapi.com/artist/412";
 if (id) {
-  URL = "https://deezerdevs-deezer.p.rapidapi.com/artist/" + id;
+  URL =
+    "https://deezerdevs-deezer.p.rapidapi.com/artist/" + id;
 } else if (q) {
-  URL = "https://deezerdevs-deezer.p.rapidapi.com/search?q=" + q;
+  URL =
+    "https://deezerdevs-deezer.p.rapidapi.com/search?q=" +
+    q;
   console.log(q);
 }
 
-const volumeInterno = document.getElementById("volumeInterno");
-const volumeAlto = document.getElementById("volumeAlto");
-const volumeMedio = document.getElementById("VolumeMedio");
-const volumeBasso = document.getElementById("volumeBasso");
-const volumeDisattivato = document.getElementById("volumeDisattivato");
-const btnVolume = document.getElementById("btnVolume");
-btnVolume.addEventListener("click", () => {
-  volumeDisattivato.classList.remove("d-none");
-  volumeAlto.classList.add("d-none");
-  volumeBasso.classList.add("d-none");
-  volumeMedio.classList.add("d-none");
-});
-btnVolume.addEventListener("click", () => {
-  volumeDisattivato.classList.add("d-none");
-  volumeAlto.classList.add("d-none");
-  volumeBasso.classList.remove("d-none");
-  volumeMedio.classList.add("d-none");
-});
+const preview = new Audio();
 
-volumeInterno.addEventListener("mousedown", (event) => {
-  event.preventDefault();
+// variabile mi registra la track premuta in precedenza
 
-  document.addEventListener("mousemove", onMouseMove);
+const playButton = document.getElementById("pauseButton");
+playButton.addEventListener("click", () => {
+  const playBtn = document.getElementById("buttonPlay");
+  const pauseBtn = document.getElementById("buttonPause");
 
-  document.addEventListener("mouseup", onMouseUp);
+  // preview.pause();
+  console.log(preview.paused);
+  if (preview.paused) {
+    preview.play();
+    playBtn.classList.add("d-none");
+    pauseBtn.classList.remove("d-none");
+  } else {
+    playBtn.classList.remove("d-none");
+    pauseBtn.classList.add("d-none");
+    preview.pause();
+  }
 });
 
-const onMouseMove = (event) => {
-  let newWidth = event.clientX - volumeInterno.getBoundingClientRect().left;
-  newWidth = Math.min(newWidth, 75);
-  volumeInterno.style.width = newWidth + "px";
-  if (newWidth >= 0 && newWidth < 30) {
-    volumeDisattivato.classList.add("d-none");
-    volumeAlto.classList.add("d-none");
-    volumeMedio.classList.add("d-none");
-    volumeBasso.classList.remove("d-none");
-  } else if (newWidth > 30 && newWidth < 50) {
-    volumeBasso.classList.add("d-none");
-    volumeDisattivato.classList.add("d-none");
-    volumeAlto.classList.add("d-none");
-    volumeMedio.classList.remove("d-none");
-  } else if (newWidth < 0) {
+const playerBar = (audioVolume) => {
+  const volumeInterno =
+    document.getElementById("volumeInterno");
+  const volumeAlto = document.getElementById("volumeAlto");
+  const volumeMedio =
+    document.getElementById("VolumeMedio");
+  const volumeBasso =
+    document.getElementById("volumeBasso");
+  const volumeDisattivato = document.getElementById(
+    "volumeDisattivato"
+  );
+  const btnVolume = document.getElementById("btnVolume");
+  btnVolume.addEventListener("click", () => {
     volumeDisattivato.classList.remove("d-none");
     volumeAlto.classList.add("d-none");
     volumeBasso.classList.add("d-none");
     volumeMedio.classList.add("d-none");
-  } else {
-    volumeMedio.classList.add("d-none");
-    volumeBasso.classList.add("d-none");
+  });
+  btnVolume.addEventListener("click", () => {
     volumeDisattivato.classList.add("d-none");
-    volumeAlto.classList.remove("d-none");
-  }
-};
+    volumeAlto.classList.add("d-none");
+    volumeBasso.classList.remove("d-none");
+    volumeMedio.classList.add("d-none");
+  });
 
-const onMouseUp = () => {
-  document.removeEventListener("mousemove", onMouseMove);
+  volumeInterno.addEventListener("mousedown", (event) => {
+    event.preventDefault();
+
+    document.addEventListener("mousemove", onMouseMove);
+
+    document.addEventListener("mouseup", onMouseUp);
+  });
+
+  const onMouseMove = (event) => {
+    let newWidth =
+      event.clientX -
+      volumeInterno.getBoundingClientRect().left;
+    newWidth = Math.min(newWidth, 75);
+    volumeInterno.style.width = newWidth + "px";
+    if (newWidth >= 0 && newWidth < 30) {
+      volumeDisattivato.classList.add("d-none");
+      volumeAlto.classList.add("d-none");
+      volumeMedio.classList.add("d-none");
+      volumeBasso.classList.remove("d-none");
+      audioVolume.volume = 0.25;
+    } else if (newWidth > 30 && newWidth < 50) {
+      volumeBasso.classList.add("d-none");
+      volumeDisattivato.classList.add("d-none");
+      volumeAlto.classList.add("d-none");
+      volumeMedio.classList.remove("d-none");
+      audioVolume.volume = 0.5;
+    } else if (newWidth < 0) {
+      volumeDisattivato.classList.remove("d-none");
+      volumeAlto.classList.add("d-none");
+      volumeBasso.classList.add("d-none");
+      volumeMedio.classList.add("d-none");
+      audioVolume.volume = 0;
+    } else {
+      volumeMedio.classList.add("d-none");
+      volumeBasso.classList.add("d-none");
+      volumeDisattivato.classList.add("d-none");
+      volumeAlto.classList.remove("d-none");
+      audioVolume.volume = 1;
+    }
+  };
+
+  const onMouseUp = () => {
+    document.removeEventListener("mousemove", onMouseMove);
+  };
 };
+playerBar(preview);
+
 // fino a qui la funzione del volume e del movimento della pagina
-const myKeyMarina = "2e8b5073f4mshff8ce3300bd3f70p160efajsn3e779e2eda67";
+const myKeyMarina =
+  "2e8b5073f4mshff8ce3300bd3f70p160efajsn3e779e2eda67";
 const findArtist = () => {
   fetch(URL, {
     headers: {
@@ -85,23 +127,32 @@ const findArtist = () => {
     })
     .then((artist) => {
       console.log(artist);
-      const imageCopertina = document.getElementById("imageCopertina");
-      const numeroFan = document.getElementById("numeroFan");
+      const imageCopertina = document.getElementById(
+        "imageCopertina"
+      );
+      const numeroFan =
+        document.getElementById("numeroFan");
       numeroFan.innerText = artist.nb_fan;
       imageCopertina.style = `background-image: url(${artist.picture_xl})`;
-      const imageArtist = document.getElementById("imgArtist");
-      const imageLike = document.getElementById("imageBraniLike");
-      const nomeArtista2 = document.getElementById("nomeArtista2");
+      const imageArtist =
+        document.getElementById("imgArtist");
+      const imageLike = document.getElementById(
+        "imageBraniLike"
+      );
+      const nomeArtista2 =
+        document.getElementById("nomeArtista2");
       nomeArtista2.innerText = artist.name;
       imageLike.src = artist.picture_small;
       imageArtist.src = artist.picture_small;
-      const containerTitle = document.getElementById("containerName");
+      const containerTitle =
+        document.getElementById("containerName");
 
       containerTitle.innerHTML = `<h3 class="mb-0 d-none d-lg-inline-block">Artista verificato</h3>
 <h1 class="display-2 mb-0">${artist.name}</h1>
 <p class="mt-0 fs-5 d-none d-lg-inline-block"><span>${artist.nb_fan}</span> ascoltatori mansili</p>`;
 
-      const nomeArtista = document.getElementById("nomeArtista");
+      const nomeArtista =
+        document.getElementById("nomeArtista");
 
       nomeArtista.innerText = artist.name;
 
@@ -117,7 +168,8 @@ const findArtist = () => {
       fetch(urlTralist, {
         headers: {
           "X-RapidAPI-Key": myKeyMarina,
-          "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+          "X-RapidAPI-Host":
+            "deezerdevs-deezer.p.rapidapi.com",
           "Content-Type": "application/json",
         },
       })
@@ -131,13 +183,14 @@ const findArtist = () => {
         .then((tracklist) => {
           console.log(tracklist);
 
-          const containerTrack = document.getElementById("containerTrack");
+          const containerTrack = document.getElementById(
+            "containerTrack"
+          );
 
           tracklist.data.forEach((track) => {
             console.log(track);
-            const preview = new Audio(track.preview);
-            preview.volume = 0.25;
-            preview.pause();
+
+            // per implementare nell'album devi creare questo
             const elList = document.createElement("li");
             elList.classList.add(
               "list-group-item",
@@ -152,37 +205,58 @@ const findArtist = () => {
               "list-group-item-action"
             );
             containerTrack.appendChild(elList);
-            const containerImage = document.createElement("button");
-            containerImage.classList.add("mx-3", "h-25", "w-25", "btn");
+            const containerImage =
+              document.createElement("button");
+            containerImage.classList.add(
+              "mx-3",
+              "h-25",
+              "w-25",
+              "btn"
+            );
             containerImage.appendChild(preview);
             console.log(track.artist.name);
-            const playButton = document.getElementById("pauseButton");
+
+            const playButton =
+              document.getElementById("pauseButton");
 
             containerImage.addEventListener("click", () => {
-              if (preview.paused) {
+              if (
+                preview.paused ||
+                preview.src !== preview.src
+              ) {
+                preview.src = track.preview;
                 preview.play();
               } else {
                 preview.pause();
               }
-
-              const imagePlayer = document.getElementById("imgPlayer");
-              const songPlayer = document.getElementById("songPlayer");
-              const artistPlayer = document.getElementById("artistPlayers");
-              imagePlayer.src = track.contributors[0].picture_small;
+              // condizione che prevede lo stop della canzone precedentemente cliccata
+              const imagePlayer =
+                document.getElementById("imgPlayer");
+              const songPlayer =
+                document.getElementById("songPlayer");
+              const artistPlayer =
+                document.getElementById("artistPlayers");
+              imagePlayer.src =
+                track.contributors[0].picture_small;
               songPlayer.innerText = track.title_short;
               artistPlayer.innerText = track.artist.name;
+              const durationTrack =
+                document.getElementById("duration");
+
+              durationTrack.innerText = track.duration;
             });
-            playButton.addEventListener("click", () => {
-              preview.pause();
-            });
+
             console.log(playButton);
 
-            const imageTrack = document.createElement("img");
+            const imageTrack =
+              document.createElement("img");
 
             imageTrack.classList.add("img-fluid");
             containerImage.appendChild(imageTrack);
-            imageTrack.src = track.contributors[0].picture_small;
-            const titleTrackContainer = document.createElement("div");
+            imageTrack.src =
+              track.contributors[0].picture_small;
+            const titleTrackContainer =
+              document.createElement("div");
             titleTrackContainer.classList.add("mx-3");
             const titleTrack = document.createElement("p");
             titleTrack.classList.add("fw-bold");
@@ -197,25 +271,35 @@ const findArtist = () => {
               "flex-column",
               "align-items-center"
             );
-            const rankTrackContainer = document.createElement("div");
-            rankTrackContainer.classList.add("mx-3", "d-none", "d-lg-block");
-            const btnSettings = document.createElement("button");
+            const rankTrackContainer =
+              document.createElement("div");
+            rankTrackContainer.classList.add(
+              "mx-3",
+              "d-none",
+              "d-lg-block"
+            );
+            const btnSettings =
+              document.createElement("button");
             btnSettings.innerHTML = `<i class="bi bi-three-dots-vertical"></i>`;
             btnSettings.classList.add("btn", "d-lg-none");
             const rankTrack = document.createElement("p");
             rankTrack.classList.add("fw-bold");
             rankTrack.innerText = track.rank;
             rankTrackContainer.appendChild(rankTrack);
-            const durationTrackContainer = document.createElement("div");
+            const durationTrackContainer =
+              document.createElement("div");
             durationTrackContainer.classList.add(
               "mx-3",
               "d-none",
               "d-lg-block"
             );
-            const durationTrack = document.createElement("p");
+            const durationTrack =
+              document.createElement("p");
             durationTrack.classList.add("fw-bold");
             durationTrack.innerText = track.duration;
-            durationTrackContainer.appendChild(durationTrack);
+            durationTrackContainer.appendChild(
+              durationTrack
+            );
             elList.append(
               containerImage,
               titleTrackContainer,
@@ -239,7 +323,10 @@ const findArtist = () => {
             const titleCard = document.createElement("h5");
             titleCard.innerText = track.album.title;
             ancora.appendChild(titleCard);
-            ancora.classList.add("link-underline", "link-underline-opacity-0");
+            ancora.classList.add(
+              "link-underline",
+              "link-underline-opacity-0"
+            );
             ancora.href = `./album.html?albumPage=${track.album.id}`;
 
             cardTitle.appendChild(ancora);
@@ -247,7 +334,8 @@ const findArtist = () => {
             card.append(img, cardBody);
             col.appendChild(card);
 
-            const collab = document.getElementById("collab");
+            const collab =
+              document.getElementById("collab");
             track.contributors.forEach((collaboration) => {
               const col2 = document.createElement("div");
               collab.appendChild(col2);
@@ -258,11 +346,14 @@ const findArtist = () => {
               const img2 = document.createElement("img");
               img2.src = collaboration.picture_medium;
               img2.classList.add("rounded-circle");
-              const cardBody2 = document.createElement("div");
+              const cardBody2 =
+                document.createElement("div");
               cardBody2.classList.add("card-body");
-              const cardTitle2 = document.createElement("div");
+              const cardTitle2 =
+                document.createElement("div");
               const ancora = document.createElement("a");
-              const titleCard2 = document.createElement("h5");
+              const titleCard2 =
+                document.createElement("h5");
               ancora.appendChild(titleCard2);
               ancora.classList.add(
                 "link-underline",
@@ -311,11 +402,15 @@ const findPlaylistLeft = (url) => {
           randomizeSongs.push(...shuffleArray(songs));
         }
 
-        const playlistContainer = document.getElementById("playlistContainer");
+        const playlistContainer = document.getElementById(
+          "playlistContainer"
+        );
         randomizeSongs.forEach((song) => {
           const title = song.title;
           const titleElement = document.createElement("a");
-          titleElement.classList.add("text-decoration-none");
+          titleElement.classList.add(
+            "text-decoration-none"
+          );
           titleElement.href = `#`;
           titleElement.innerHTML = title;
           playlistContainer.appendChild(titleElement);
@@ -362,10 +457,12 @@ document.addEventListener("mousemove", (e) => {
   if (newWidth >= minWidth && newWidth <= maxLeftBarWidth) {
     leftBar.style.width = `${newWidth}px`;
 
-    const homeWidth = document.getElementById("home").offsetWidth;
+    const homeWidth =
+      document.getElementById("home").offsetWidth;
     const centerBar = document.getElementById("centerBar");
     const rightBar = document.getElementById("rightBar");
-    const centerBarWidth = homeWidth - newWidth - rightBar.offsetWidth;
+    const centerBarWidth =
+      homeWidth - newWidth - rightBar.offsetWidth;
     centerBar.style.width = `${centerBarWidth}px`;
 
     if (newWidth >= rightTreshhold) {
@@ -383,13 +480,16 @@ document.addEventListener("mouseup", () => {
   console.log(isResizing);
 });
 
-const closeRightBar = document.querySelector(".closeRightBar");
+const closeRightBar = document.querySelector(
+  ".closeRightBar"
+);
 
 closeRightBar.addEventListener("click", () => {
   rightBar.classList.remove("d-lg-block");
 });
 
-const notifications = document.getElementById("notifications");
+const notifications =
+  document.getElementById("notifications");
 
 notifications.addEventListener("click", () => {
   rightBar.classList.add("d-lg-block");
