@@ -84,209 +84,199 @@ const findArtist = () => {
       }
     })
     .then((artist) => {
-      if (url.includes("/search?q=")) {
-        const artistId = data.data[0].artist.id;
-        findArtist(
-          `https://deezerdevs-deezer.p.rapidapi.com/artist/${artistId}`
-        );
-      } else {
-        console.log(artist);
-        const imageCopertina = document.getElementById("imageCopertina");
-        const numeroFan = document.getElementById("numeroFan");
-        numeroFan.innerText = artist.nb_fan;
-        imageCopertina.style = `background-image: url(${artist.picture_xl})`;
-        const imageArtist = document.getElementById("imgArtist");
-        const imageLike = document.getElementById("imageBraniLike");
-        const nomeArtista2 = document.getElementById("nomeArtista2");
-        nomeArtista2.innerText = artist.name;
-        imageLike.src = artist.picture_small;
-        imageArtist.src = artist.picture_small;
-        const containerTitle = document.getElementById("containerName");
+      console.log(artist);
+      const imageCopertina = document.getElementById("imageCopertina");
+      const numeroFan = document.getElementById("numeroFan");
+      numeroFan.innerText = artist.nb_fan;
+      imageCopertina.style = `background-image: url(${artist.picture_xl})`;
+      const imageArtist = document.getElementById("imgArtist");
+      const imageLike = document.getElementById("imageBraniLike");
+      const nomeArtista2 = document.getElementById("nomeArtista2");
+      nomeArtista2.innerText = artist.name;
+      imageLike.src = artist.picture_small;
+      imageArtist.src = artist.picture_small;
+      const containerTitle = document.getElementById("containerName");
 
-        containerTitle.innerHTML = `<h3 class="mb-0 d-none d-lg-inline-block">Artista verificato</h3>
-  <h1 class="display-2 mb-0">${artist.name}</h1>
-  <p class="mt-0 fs-5 d-none d-lg-inline-block"><span>${artist.nb_fan}</span> ascoltatori mansili</p>`;
+      containerTitle.innerHTML = `<h3 class="mb-0 d-none d-lg-inline-block">Artista verificato</h3>
+<h1 class="display-2 mb-0">${artist.name}</h1>
+<p class="mt-0 fs-5 d-none d-lg-inline-block"><span>${artist.nb_fan}</span> ascoltatori mansili</p>`;
 
-        const nomeArtista = document.getElementById("nomeArtista");
+      const nomeArtista = document.getElementById("nomeArtista");
 
-        nomeArtista.innerText = artist.name;
+      nomeArtista.innerText = artist.name;
 
-        console.log(artist.tracklist);
+      console.log(artist.tracklist);
 
-        console.dir(imageCopertina);
-        console.log(artist.picture_xl);
+      console.dir(imageCopertina);
+      console.log(artist.picture_xl);
 
-        const urlTralist = id
-          ? `https://striveschool-api.herokuapp.com/api/deezer/artist/${id}/top?limit=10`
-          : `https://striveschool-api.herokuapp.com/api/deezer/artist/412/top?limit=10`;
+      const urlTralist = id
+        ? `https://striveschool-api.herokuapp.com/api/deezer/artist/${id}/top?limit=10`
+        : `https://striveschool-api.herokuapp.com/api/deezer/artist/412/top?limit=10`;
 
-        fetch(urlTralist, {
-          headers: {
-            "X-RapidAPI-Key": myKeyMarina,
-            "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
-            "Content-Type": "application/json",
-          },
+      fetch(urlTralist, {
+        headers: {
+          "X-RapidAPI-Key": myKeyMarina,
+          "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Request failed!");
+          }
         })
-          .then((response) => {
-            if (response.ok) {
-              return response.json();
-            } else {
-              throw new Error("Request failed!");
-            }
-          })
-          .then((tracklist) => {
-            console.log(tracklist);
+        .then((tracklist) => {
+          console.log(tracklist);
 
-            const containerTrack = document.getElementById("containerTrack");
+          const containerTrack = document.getElementById("containerTrack");
 
-            tracklist.data.forEach((track) => {
-              console.log(track);
-              const preview = new Audio(track.preview);
-              preview.volume = 0.25;
-              preview.pause();
-              const elList = document.createElement("li");
-              elList.classList.add(
-                "list-group-item",
-                "d-flex",
-                "justify-content-between",
-                "align-items-center",
-                "border-0",
-                "container-fluid",
-                "py-3",
-                "h-auto",
-                "w-100",
-                "list-group-item-action"
-              );
-              containerTrack.appendChild(elList);
-              const containerImage = document.createElement("button");
-              containerImage.classList.add("mx-3", "h-25", "w-25", "btn");
-              containerImage.appendChild(preview);
-              console.log(track.artist.name);
-              const playButton = document.getElementById("pauseButton");
+          tracklist.data.forEach((track) => {
+            console.log(track);
+            const preview = new Audio(track.preview);
+            preview.volume = 0.25;
+            preview.pause();
+            const elList = document.createElement("li");
+            elList.classList.add(
+              "list-group-item",
+              "d-flex",
+              "justify-content-between",
+              "align-items-center",
+              "border-0",
+              "container-fluid",
+              "py-3",
+              "h-auto",
+              "w-100",
+              "list-group-item-action"
+            );
+            containerTrack.appendChild(elList);
+            const containerImage = document.createElement("button");
+            containerImage.classList.add("mx-3", "h-25", "w-25", "btn");
+            containerImage.appendChild(preview);
+            console.log(track.artist.name);
+            const playButton = document.getElementById("pauseButton");
 
-              containerImage.addEventListener("click", () => {
-                if (preview.paused) {
-                  preview.play();
-                } else {
-                  preview.pause();
-                }
-
-                const imagePlayer = document.getElementById("imgPlayer");
-                const songPlayer = document.getElementById("songPlayer");
-                const artistPlayer = document.getElementById("artistPlayers");
-                imagePlayer.src = track.contributors[0].picture_small;
-                songPlayer.innerText = track.title_short;
-                artistPlayer.innerText = track.artist.name;
-              });
-              playButton.addEventListener("click", () => {
+            containerImage.addEventListener("click", () => {
+              if (preview.paused) {
+                preview.play();
+              } else {
                 preview.pause();
-              });
-              console.log(playButton);
+              }
 
-              const imageTrack = document.createElement("img");
+              const imagePlayer = document.getElementById("imgPlayer");
+              const songPlayer = document.getElementById("songPlayer");
+              const artistPlayer = document.getElementById("artistPlayers");
+              imagePlayer.src = track.contributors[0].picture_small;
+              songPlayer.innerText = track.title_short;
+              artistPlayer.innerText = track.artist.name;
+            });
+            playButton.addEventListener("click", () => {
+              preview.pause();
+            });
+            console.log(playButton);
 
-              imageTrack.classList.add("img-fluid");
-              containerImage.appendChild(imageTrack);
-              imageTrack.src = track.contributors[0].picture_small;
-              const titleTrackContainer = document.createElement("div");
-              titleTrackContainer.classList.add("mx-3");
-              const titleTrack = document.createElement("p");
-              titleTrack.classList.add("fw-bold");
-              titleTrack.innerText = track.title_short;
-              titleTrackContainer.appendChild(titleTrack);
-              const rankTrack2 = document.createElement("p");
-              titleTrackContainer.appendChild(rankTrack2);
-              rankTrack2.innerText = track.rank;
-              rankTrack2.classList.add("d-lg-none");
-              titleTrackContainer.classList.add(
-                "d-flex",
-                "flex-column",
-                "align-items-center"
-              );
-              const rankTrackContainer = document.createElement("div");
-              rankTrackContainer.classList.add("mx-3", "d-none", "d-lg-block");
-              const btnSettings = document.createElement("button");
-              btnSettings.innerHTML = `<i class="bi bi-three-dots-vertical"></i>`;
-              btnSettings.classList.add("btn", "d-lg-none");
-              const rankTrack = document.createElement("p");
-              rankTrack.classList.add("fw-bold");
-              rankTrack.innerText = track.rank;
-              rankTrackContainer.appendChild(rankTrack);
-              const durationTrackContainer = document.createElement("div");
-              durationTrackContainer.classList.add(
-                "mx-3",
-                "d-none",
-                "d-lg-block"
-              );
-              const durationTrack = document.createElement("p");
-              durationTrack.classList.add("fw-bold");
-              durationTrack.innerText = track.duration;
-              durationTrackContainer.appendChild(durationTrack);
-              elList.append(
-                containerImage,
-                titleTrackContainer,
-                rankTrackContainer,
-                durationTrackContainer,
-                btnSettings
-              );
-              const album = document.getElementById("album");
-              const col = document.createElement("div");
-              album.appendChild(col);
-              col.classList.add("col", "gy-3");
-              const card = document.createElement("div");
-              card.classList.add("card");
-              card.style = "height: 350px";
-              const img = document.createElement("img");
-              img.src = track.album.cover_medium;
-              const cardBody = document.createElement("div");
-              cardBody.classList.add("card-body");
-              const cardTitle = document.createElement("div");
+            const imageTrack = document.createElement("img");
+
+            imageTrack.classList.add("img-fluid");
+            containerImage.appendChild(imageTrack);
+            imageTrack.src = track.contributors[0].picture_small;
+            const titleTrackContainer = document.createElement("div");
+            titleTrackContainer.classList.add("mx-3");
+            const titleTrack = document.createElement("p");
+            titleTrack.classList.add("fw-bold");
+            titleTrack.innerText = track.title_short;
+            titleTrackContainer.appendChild(titleTrack);
+            const rankTrack2 = document.createElement("p");
+            titleTrackContainer.appendChild(rankTrack2);
+            rankTrack2.innerText = track.rank;
+            rankTrack2.classList.add("d-lg-none");
+            titleTrackContainer.classList.add(
+              "d-flex",
+              "flex-column",
+              "align-items-center"
+            );
+            const rankTrackContainer = document.createElement("div");
+            rankTrackContainer.classList.add("mx-3", "d-none", "d-lg-block");
+            const btnSettings = document.createElement("button");
+            btnSettings.innerHTML = `<i class="bi bi-three-dots-vertical"></i>`;
+            btnSettings.classList.add("btn", "d-lg-none");
+            const rankTrack = document.createElement("p");
+            rankTrack.classList.add("fw-bold");
+            rankTrack.innerText = track.rank;
+            rankTrackContainer.appendChild(rankTrack);
+            const durationTrackContainer = document.createElement("div");
+            durationTrackContainer.classList.add(
+              "mx-3",
+              "d-none",
+              "d-lg-block"
+            );
+            const durationTrack = document.createElement("p");
+            durationTrack.classList.add("fw-bold");
+            durationTrack.innerText = track.duration;
+            durationTrackContainer.appendChild(durationTrack);
+            elList.append(
+              containerImage,
+              titleTrackContainer,
+              rankTrackContainer,
+              durationTrackContainer,
+              btnSettings
+            );
+            const album = document.getElementById("album");
+            const col = document.createElement("div");
+            album.appendChild(col);
+            col.classList.add("col", "gy-3");
+            const card = document.createElement("div");
+            card.classList.add("card");
+            card.style = "height: 350px";
+            const img = document.createElement("img");
+            img.src = track.album.cover_medium;
+            const cardBody = document.createElement("div");
+            cardBody.classList.add("card-body");
+            const cardTitle = document.createElement("div");
+            const ancora = document.createElement("a");
+            const titleCard = document.createElement("h5");
+            titleCard.innerText = track.album.title;
+            ancora.appendChild(titleCard);
+            ancora.classList.add("link-underline", "link-underline-opacity-0");
+            ancora.href = `./album.html?albumPage=${track.album.id}`;
+
+            cardTitle.appendChild(ancora);
+            cardBody.appendChild(cardTitle);
+            card.append(img, cardBody);
+            col.appendChild(card);
+
+            const collab = document.getElementById("collab");
+            track.contributors.forEach((collaboration) => {
+              const col2 = document.createElement("div");
+              collab.appendChild(col2);
+              col2.classList.add("col", "gy-3");
+              const card2 = document.createElement("div");
+              card2.classList.add("card");
+              card2.style = "height: 300px";
+              const img2 = document.createElement("img");
+              img2.src = collaboration.picture_medium;
+              img2.classList.add("rounded-circle");
+              const cardBody2 = document.createElement("div");
+              cardBody2.classList.add("card-body");
+              const cardTitle2 = document.createElement("div");
               const ancora = document.createElement("a");
-              const titleCard = document.createElement("h5");
-              titleCard.innerText = track.album.title;
-              ancora.appendChild(titleCard);
+              const titleCard2 = document.createElement("h5");
+              ancora.appendChild(titleCard2);
               ancora.classList.add(
                 "link-underline",
                 "link-underline-opacity-0"
               );
-              ancora.href = `./album.html?albumPage=${track.album.id}`;
-
-              cardTitle.appendChild(ancora);
-              cardBody.appendChild(cardTitle);
-              card.append(img, cardBody);
-              col.appendChild(card);
-
-              const collab = document.getElementById("collab");
-              track.contributors.forEach((collaboration) => {
-                const col2 = document.createElement("div");
-                collab.appendChild(col2);
-                col2.classList.add("col", "gy-3");
-                const card2 = document.createElement("div");
-                card2.classList.add("card");
-                card2.style = "height: 300px";
-                const img2 = document.createElement("img");
-                img2.src = collaboration.picture_medium;
-                img2.classList.add("rounded-circle");
-                const cardBody2 = document.createElement("div");
-                cardBody2.classList.add("card-body");
-                const cardTitle2 = document.createElement("div");
-                const ancora = document.createElement("a");
-                const titleCard2 = document.createElement("h5");
-                ancora.appendChild(titleCard2);
-                ancora.classList.add(
-                  "link-underline",
-                  "link-underline-opacity-0"
-                );
-                ancora.href = `./artist-page.html?artistPage=${collaboration.id}`;
-                titleCard2.innerText = collaboration.name;
-                cardTitle2.appendChild(ancora);
-                cardBody2.appendChild(cardTitle2);
-                card2.append(img2, cardBody2);
-                col2.appendChild(card2);
-              });
+              ancora.href = `./artist-page.html?artistPage=${collaboration.id}`;
+              titleCard2.innerText = collaboration.name;
+              cardTitle2.appendChild(ancora);
+              cardBody2.appendChild(cardTitle2);
+              card2.append(img2, cardBody2);
+              col2.appendChild(card2);
             });
           });
-      }
+        });
     })
     .catch((error) => {
       console.log(error);

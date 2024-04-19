@@ -149,6 +149,8 @@ searchForm.addEventListener("submit", (event) => {
   const query = searchBar.value;
   const selectedType = selectType.value;
   if (selectedType === "artist") {
+    const url = "https://deezerdevs-deezer.p.rapidapi.com/search?q=" + query;
+    fetch(url);
     window.location.href = `./artist-page.html?queryPage=${query}`;
     selectType.value = "";
   } else if (selectedType === "album") {
