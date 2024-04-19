@@ -30,37 +30,38 @@ const findAlbum = (url) => {
       }
     })
     .then((data) => {
-      const imageAlbum = data.cover_big;
-      const imageAlbumMobile = data.cover_medium;
-      const artistName = data.artist.name;
-      const albumTitle = data.title;
-      const releaseDate = data.release_date;
-      const trackCount = data.nb_tracks;
-      const urlTrackList = data.tracklist;
-      const idArtist = data.artist.id;
-      console.log(urlTrackList);
-      console.log(trackCount);
-      console.log(data);
+      if (url.includes("/search?q=")) {
+        const albumId = data.data[0].album.id;
+        findAlbum(`https://deezerdevs-deezer.p.rapidapi.com/album/${albumId}`);
+      } else {
+        const imageAlbum = data.cover_big;
+        const imageAlbumMobile = data.cover_medium;
+        const artistName = data.artist.name;
+        const albumTitle = data.title;
+        const releaseDate = data.release_date;
+        const trackCount = data.nb_tracks;
+        const urlTrackList = data.tracklist;
+        const idArtist = data.artist.id;
 
-      const containerAlbum = document.getElementById("containerAlbum");
-      containerAlbum.innerHTML = `<div class="row">
-  
-      <div class="col-md-2 col-12 d-flex justify-content-center p-0 ">
-        <img src="${imageAlbum}" class="img-fluid d-none d-md-flex mx-4 " alt="Album Image "/>
-        <img src="${imageAlbumMobile}" class="img-fluid d-md-none mt-5" alt="Album Image"/>
-      </div>
-      <div class="col-md-10 col-12 d-flex flex-column">
-        <div class="mt-auto mb-0 d-md-block d-none">Album</div>
-        <h1 class="mt-4 ">${albumTitle}</h1>
-        <p class="mb-0 d-none d-md-block ">${artistName} • ${releaseDate} • ${trackCount} Brani</p>
-        <p class="mb-2 d-md-none ">${artistName}</p>
-        <p class="mb-0 d-md-none "> Album • ${releaseDate} </p>
-      </div>
-    </div>`;
-      updateBackgroundGradient(imageAlbum);
-      createTrackList(
-        `https://striveschool-api.herokuapp.com/api/deezer/artist/${idArtist}/top?limit=${trackCount}`
-      );
+        const containerAlbum = document.getElementById("containerAlbum");
+        containerAlbum.innerHTML = `<div class="row">
+        <div class="col-md-2 col-12 d-flex justify-content-center p-0 ">
+          <img src="${imageAlbum}" class="img-fluid d-none d-md-flex mx-4 " alt="Album Image"/>
+          <img src="${imageAlbumMobile}" class="img-fluid d-md-none mt-5" alt="Album Image"/>
+        </div>
+        <div class="col-md-10 col-12 d-flex flex-column">
+          <div class="mt-auto mb-0 d-md-block d-none">Album</div>
+          <h1 class="mt-4 ">${albumTitle}</h1>
+          <p class="mb-0 d-none d-md-block ">${artistName} • ${releaseDate} • ${trackCount} Brani</p>
+          <p class="mb-2 d-md-none ">${artistName}</p>
+          <p class="mb-0 d-md-none "> Album • ${releaseDate} </p>
+        </div>
+      </div>`;
+        updateBackgroundGradient(imageAlbum);
+        createTrackList(
+          `https://striveschool-api.herokuapp.com/api/deezer/artist/${idArtist}/top?limit=${trackCount}`
+        );
+      }
     })
     .catch((error) => {
       console.error("Error fetching album:", error);
