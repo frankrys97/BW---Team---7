@@ -150,8 +150,10 @@ searchForm.addEventListener("submit", (event) => {
   const selectedType = selectType.value;
   if (selectedType === "artist") {
     window.location.href = `./artist-page.html?queryPage=${query}`;
+    selectType.value = "";
   } else if (selectedType === "album") {
     window.location.href = `./album.html?QueryPage=${query}`;
+    selectType.value = "";
   }
 });
 
