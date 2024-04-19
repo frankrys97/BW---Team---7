@@ -114,11 +114,12 @@ const myKeyFrancesco = "29cd1ae8c9msh33b66faee0e4446p1a9f60jsnb42fe6b9c1f5";
 const myKeyGiulio = "d470d1fc32mshf7e1a1bbce29cf1p138398jsnd112e2807eda";
 const myKeyMarina = "2e8b5073f4mshff8ce3300bd3f70p160efajsn3e779e2eda67";
 const myKeyCarlo = "62aa31e1edmsh5b877960812af61p1c1b11jsncd4891d90e66";
+const myKeyFrancesco2 = "79ef909c12msh0b593d0b951ee76p1bb51ajsn722c7e7bd3a0"
 
 const findTrack = (url) => {
   fetch(url, {
     headers: {
-      "X-RapidAPI-Key": myKeyFrancesco,
+      "X-RapidAPI-Key": myKeyFrancesco2,
       "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
       "Content-Type": "application/json",
     },
@@ -136,18 +137,12 @@ const findTrack = (url) => {
         !playlist.hasOwnProperty("error") &&
         playlist.tracks.data.length > 5
       ) {
-        const imageTracks =
-          playlist.tracks.data[
-            Math.floor(Math.random() * playlist.tracks.data.length)
-          ].album.cover_big;
-        const artistName =
-          playlist.tracks.data[
-            Math.floor(Math.random() * playlist.tracks.data.length)
-          ].artist.name;
-        const albumTitle =
-          playlist.tracks.data[
-            Math.floor(Math.random() * playlist.tracks.data.length)
-          ].album.title;
+        const randomIndex = Math.floor(
+          Math.random() * playlist.tracks.data.length
+        );
+        const imageTracks = playlist.tracks.data[randomIndex].album.cover_big;
+        const artistName = playlist.tracks.data[randomIndex].artist.name;
+        const albumTitle = playlist.tracks.data[randomIndex].album.title;
 
         const annuncio = document.getElementById("annuncio");
 
@@ -198,6 +193,19 @@ const findTrack = (url) => {
   </div>
 
     `;
+    const preview = new Audio(playlist.tracks.data[randomIndex].preview);
+
+        const playButton = document.querySelector(".playButton");
+        playButton.addEventListener("click", () => {
+
+          if (preview.paused) {
+            preview.play();
+            playButton.innerHTML = "Pause";
+          } else {
+            preview.pause();
+            playButton.innerHTML = "Play";
+          }
+        });
 
         const hiddenButton = document.querySelector(".hiddenButton");
 
