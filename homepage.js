@@ -174,8 +174,9 @@ const findTrack = (url) => {
     id="hiddenButtonContainer"
   >
     <button
-      class="btn text-white-50 rounded rounded-pill py-1 hiddenButton fw-semibold"
+      class="btn text-white-50 rounded rounded-pill py-1 fw-semibold"
       href="#annuncio"
+      id = "hiddenButton"
     >
       NASCONDI ANNUNCI
     </button>
@@ -199,7 +200,7 @@ const findTrack = (url) => {
         });
 
         const hiddenButton =
-          document.querySelector(".hiddenButton");
+          document.querySelector("#hiddenButton");
 
         hiddenButton.addEventListener("click", () => {
           annuncio.classList.remove("d-lg-flex");
