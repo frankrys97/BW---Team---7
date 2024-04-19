@@ -150,8 +150,26 @@ searchForm.addEventListener("submit", (event) => {
   const selectedType = selectType.value;
   if (selectedType === "artist") {
     const url = "https://deezerdevs-deezer.p.rapidapi.com/search?q=" + query;
-    fetch(url);
-    window.location.href = `./artist-page.html?queryPage=${query}`;
+
+    fetch(url, {
+      headers: {
+        "X-RapidAPI-Key": myKeyFrancesco,
+        "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Richiesta fallita!");
+        }
+      })
+      .then((data) => {
+        const artistID = data.data[0].artist.id;
+        window.location.href = `./artist-page.html?artistPage=${artistID}`;
+      });
+
     selectType.value = "";
   } else if (selectedType === "album") {
     window.location.href = `./album.html?QueryPage=${query}`;
