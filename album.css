@@ -94,7 +94,7 @@
   
   #leftBar {
     height: 100vh;
-    min-width: 250px;
+    min-width: 260px;
     a:hover {
       color: white;
     }
@@ -121,7 +121,7 @@
   }
   
   #rightBar {
-    min-width: 15%;
+    min-width: 240px;
     background-color: aqua;
     height: 100vh;
   }
