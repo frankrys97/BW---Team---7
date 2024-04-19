@@ -200,7 +200,7 @@ const randomizeSongs = [];
 const findPlaylistLeft = (url) => {
   fetch(url, {
     headers: {
-      "X-RapidAPI-Key": myKeyFrancesco,
+      "X-RapidAPI-Key": myKeyCarlo,
       "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
       "Content-Type": "application/json",
     },
