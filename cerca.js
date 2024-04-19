@@ -1,11 +1,8 @@
-const volumeInterno =
-  document.getElementById("volumeInterno");
+const volumeInterno = document.getElementById("volumeInterno");
 const volumeAlto = document.getElementById("volumeAlto");
 const volumeMedio = document.getElementById("VolumeMedio");
 const volumeBasso = document.getElementById("volumeBasso");
-const volumeDisattivato = document.getElementById(
-  "volumeDisattivato"
-);
+const volumeDisattivato = document.getElementById("volumeDisattivato");
 const btnVolume = document.getElementById("btnVolume");
 // btnVolume.addEventListener("click", () => {
 //   volumeDisattivato.classList.remove("d-none");
@@ -23,9 +20,7 @@ volumeInterno.addEventListener("mousedown", (event) => {
 });
 
 const onMouseMove = (event) => {
-  let newWidth =
-    event.clientX -
-    volumeInterno.getBoundingClientRect().left;
+  let newWidth = event.clientX - volumeInterno.getBoundingClientRect().left;
   newWidth = Math.min(newWidth, 75);
   volumeInterno.style.width = newWidth + "px";
   if (newWidth >= 0 && newWidth < 30) {
@@ -57,16 +52,13 @@ const onMouseUp = () => {
 
 const leftBar = document.getElementById("leftBar");
 const rightBar = document.getElementById("rightBar");
-const closeRightBar = document.querySelector(
-  ".closeRightBar"
-);
+const closeRightBar = document.querySelector(".closeRightBar");
 
 closeRightBar.addEventListener("click", () => {
   rightBar.classList.remove("d-lg-block");
 });
 
-const notifications =
-  document.getElementById("notifications");
+const notifications = document.getElementById("notifications");
 
 notifications.addEventListener("click", () => {
   rightBar.classList.add("d-lg-block");
@@ -82,8 +74,7 @@ const randomColor = () => {
 };
 
 const assignRandomColor = () => {
-  const searchCard =
-    document.querySelectorAll(".searchCard");
+  const searchCard = document.querySelectorAll(".searchCard");
 
   searchCard.forEach((card) => {
     card.style.backgroundColor = randomColor();
@@ -116,12 +107,10 @@ document.addEventListener("mousemove", (e) => {
   if (newWidth >= minWidth && newWidth <= maxLeftBarWidth) {
     leftBar.style.width = `${newWidth}px`;
 
-    const homeWidth =
-      document.getElementById("home").offsetWidth;
+    const homeWidth = document.getElementById("home").offsetWidth;
     const centerBar = document.getElementById("centerBar");
     const rightBar = document.getElementById("rightBar");
-    const centerBarWidth =
-      homeWidth - newWidth - rightBar.offsetWidth;
+    const centerBarWidth = homeWidth - newWidth - rightBar.offsetWidth;
     centerBar.style.width = `${centerBarWidth}px`;
 
     if (newWidth >= rightTreshhold) {
@@ -140,8 +129,7 @@ document.addEventListener("mouseup", () => {
 });
 
 const selectType = document.getElementById("selectType");
-const searchButton =
-  document.getElementById("searchButton");
+const searchButton = document.getElementById("searchButton");
 const searchBar = document.getElementById("searchBar");
 const searchForm = document.getElementById("searchForm");
 
@@ -163,12 +151,11 @@ searchForm.addEventListener("submit", (event) => {
   if (selectedType === "artist") {
     window.location.href = `./artist-page.html?queryPage=${query}`;
   } else if (selectedType === "album") {
-    window.location.href = `./album.html?q=${query}`;
+    window.location.href = `./album.html?QueryPage=${query}`;
   }
 });
 
-const myKeyFrancesco =
-  "29cd1ae8c9msh33b66faee0e4446p1a9f60jsnb42fe6b9c1f5";
+const myKeyFrancesco = "29cd1ae8c9msh33b66faee0e4446p1a9f60jsnb42fe6b9c1f5";
 
 const randomizeSongs = [];
 
@@ -202,15 +189,11 @@ const findPlaylistLeft = (url) => {
           randomizeSongs.push(...shuffleArray(songs));
         }
 
-        const playlistContainer = document.getElementById(
-          "playlistContainer"
-        );
+        const playlistContainer = document.getElementById("playlistContainer");
         randomizeSongs.forEach((song) => {
           const title = song.title;
           const titleElement = document.createElement("a");
-          titleElement.classList.add(
-            "text-decoration-none"
-          );
+          titleElement.classList.add("text-decoration-none");
           titleElement.href = `#`;
           titleElement.innerHTML = title;
           playlistContainer.appendChild(titleElement);
